@@ -1,3 +1,5 @@
+package proyectox.model;
+
 
 import java.util.Date;
 /**
@@ -32,8 +34,8 @@ public class Calificacion {
     public int getMid() {
         return mid;
     }
-    
-    
-    
-    
+
+
+
+
 }

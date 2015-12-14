@@ -6,33 +6,36 @@ import java.util.Date;
  *
  * @CarlosCedeniio
  */
-public class Calificacion {
-	private int cid;
+public class Calificacion implements Comparable<Calificacion> {
 	private int rating;
-	private Date date;
+	private String date;
 	private int mid;
 
-	public Calificacion(int cid, int rating, Date date, int mid) {
-		this.cid = cid;
+	public Calificacion(int rating, String date, int mid) {
 		this.rating = rating;
 		this.date = date;
 		this.mid = mid;
 	}
 
-	public int getCid() {
-		return cid;
-	}
 
 	public int getRating() {
 		return rating;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 	public int getMid() {
 		return mid;
+
 	}
+
+
+	@Override
+	public int compareTo(Calificacion arg0) {
+		return this.date.compareTo(arg0.getDate());
+	}
+
 
 }

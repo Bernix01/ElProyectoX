@@ -16,7 +16,7 @@ import proyectox.model.Pelicula;
  */
 public class ProyectoX {
 
-	public LinkedList<Pelicula> Top10Categoria(LinkedList<Pelicula> P, String Categoria) {
+	public LinkedList<Pelicula> top10Categoria(LinkedList<Pelicula> P, String Categoria) {
 		LinkedList<Pelicula> C = new LinkedList<>();
 		Iterator iter = P.iterator();
 		while (iter.hasNext()) {
@@ -34,7 +34,7 @@ public class ProyectoX {
 		return (C);
 	}
 
-	public LinkedList<Calificacion> CalificacionesFecha(LinkedList<Calificacion> C) {
+	public LinkedList<Calificacion> calificacionesFecha(LinkedList<Calificacion> C) {
 		Collections.sort(C, new Comparator<Calificacion>() {
 			@Override
 			public int compare(Calificacion c1, Calificacion c2) {
@@ -60,7 +60,7 @@ public class ProyectoX {
 
 	}
 
-	public LinkedList<Pelicula> ListaOrdenadaPorCalificacion(LinkedList<Pelicula> C) {
+	public LinkedList<Pelicula> listaOrdenadaPorCalificacion(LinkedList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
@@ -71,7 +71,7 @@ public class ProyectoX {
 		return (C);
 	}
 
-	public LinkedList<Pelicula> ListaOrdenadaAlfabetica(LinkedList<Pelicula> C) {
+	public LinkedList<Pelicula> listaOrdenadaAlfabetica(LinkedList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
@@ -80,7 +80,5 @@ public class ProyectoX {
 		});
 		return C;
 	}
-
-
 
 }

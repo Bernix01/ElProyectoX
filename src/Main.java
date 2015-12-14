@@ -1,13 +1,8 @@
-package proyectox;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- * @author gbern
- *
- */
-public class ProyectoX  extends Application {
+public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {

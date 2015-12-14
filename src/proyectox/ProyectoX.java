@@ -14,16 +14,7 @@ import proyectox.model.Pelicula;
  * @author gbern
  *
  */
-public class ProyectoX extends Application {
-
-	@Override
-	public void start(Stage primaryStage) {
-
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
+public class ProyectoX {
 
 	public LinkedList<Pelicula> Top10Categoria(LinkedList<Pelicula> P, String Categoria) {
 		LinkedList<Pelicula> C = new LinkedList<>();
@@ -89,5 +80,7 @@ public class ProyectoX extends Application {
 		});
 		return C;
 	}
+
+
 
 }

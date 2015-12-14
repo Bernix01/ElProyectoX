@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 
+import proyectox.ProyectoX;
 import proyectox.model.Calificacion;
 import proyectox.model.Resumen;
 
@@ -21,7 +22,7 @@ import proyectox.model.Resumen;
  */
 public class GUI extends javax.swing.JFrame {
 
-	private static String nombreResumen = "resumen.x";
+	public static String nombreResumen = "resumen.x";
 
 	/**
 	 * Creates new form GUI
@@ -289,131 +290,13 @@ public class GUI extends javax.swing.JFrame {
 				new GUI().setVisible(true);
 			}
 		});
+		ProyectoX.cargar(true);
 
-		LinkedList<Resumen> resumen = cargar(true);
+
 	}
 
 
-	private static LinkedList<Resumen> cargar(boolean b) {
-		if(b)
-			return resumir();
-		 FileReader fr;
-	        BufferedReader br;
-	        String linea;
-	        String datos[];
-	        Resumen r;
-	        LinkedList<Resumen> lista = new LinkedList<>();
-	        try {
-	            fr = new FileReader(nombreResumen);
-	            br = new BufferedReader(fr);
 
-	            while((linea = br.readLine()) != null){
-	                datos = linea.split("|");
-	                //r = new Resumen(datos[0])
-	                //lista.add(r);
-	            }
-	        }catch(ArrayIndexOutOfBoundsException e){
-	            System.out.println("Archivo con mal formato");
-	        }
-	        catch (FileNotFoundException ex) {
-	            System.out.println("El archivo no existe");
-	        } catch (IOException ex) {
-	            System.out.println("Error de lectura de archivo!!");
-	        }
-	        return lista;
-	}
-
-	@SuppressWarnings("finally")
-	public static LinkedList<Resumen> resumir() {
-		LinkedList<Resumen> res = new LinkedList<>();
-		File folder = new File("/data/download/training_set/");
-		File[] listOfFiles = folder.listFiles();
-		FileWriter fileWriter;
-		try {
-			fileWriter = new FileWriter(nombreResumen);
-			// Always wrap FileWriter in BufferedWriter.
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			for (int i = 0; i < listOfFiles.length; i++) {
-				long startTime = System.currentTimeMillis();
-				File file = listOfFiles[i];
-				if (file.isFile() && file.getName().endsWith(".txt")) {
-					Resumen r = resumirArchivo(file);
-					res.add(r);
-                    bufferedWriter.write(r.toString());
-                    bufferedWriter.newLine();
-				}
-				System.out.println("Pelicula #" + file.getName().replaceAll("\\D+", "") + ", tiempo de resumen: "
-						+ (System.currentTimeMillis() - startTime) + "ms");
-			}
-
-            bufferedWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			return res;
-		}
-
-	}
-
-	public static Resumen resumirArchivo(File arch) {
-		FileReader fr;
-		BufferedReader br;
-		String linea;
-		String datos[];
-		float promedio = 0;
-		int idPelicula;
-		String primera = "", ultima = "";
-		int c = 0; // contador de lineas
-
-		try {
-			fr = new FileReader(arch);
-			br = new BufferedReader(fr);
-			idPelicula = Integer.parseInt(br.readLine().replaceAll("\\D+", ""));
-
-			while ((linea = br.readLine()) != null) {
-				datos = linea.split(",");
-				promedio += Integer.parseInt(datos[1]);
-				if (primera.compareTo(datos[2]) != -1)
-					primera = datos[2];
-				if (ultima.compareTo(datos[2]) != 1)
-					ultima = datos[2];
-				c++;
-			}
-
-			promedio = promedio / c;
-			Resumen r = new Resumen(idPelicula, promedio, primera, ultima);
-			return r;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Archivo con mal formato");
-		} catch (FileNotFoundException ex) {
-			System.out.println("El archivo no existe");
-		} catch (IOException ex) {
-			System.out.println("Error de lectura de archivo!!");
-		}
-		return null;
-	}
-
-	public static int countLines(String filename) throws IOException {
-		InputStream is = new BufferedInputStream(new FileInputStream(filename));
-		try {
-			byte[] c = new byte[1024];
-			int count = 0;
-			int readChars = 0;
-			boolean empty = true;
-			while ((readChars = is.read(c)) != -1) {
-				empty = false;
-				for (int i = 0; i < readChars; ++i) {
-					if (c[i] == '\n') {
-						++count;
-					}
-				}
-			}
-			return (count == 0 && !empty) ? 1 : count;
-		} finally {
-			is.close();
-		}
-	}
 
 	// Variables declaration - do not modify
 	private javax.swing.JButton BtnGenerarReporte;

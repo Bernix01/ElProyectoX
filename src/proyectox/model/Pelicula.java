@@ -4,27 +4,44 @@ package proyectox.model;
  *
  * @CarlosCedeniio
  */
-public class Pelicula {
+public class Pelicula implements Comparable<Pelicula> {
 	private int id;
 	private int ano;
 	private String titulo;
-	private int rating;
-	private int cRating;
+	private String fechaPrimeraValoracion;
+	private String fechaUltimaValoracion;
+	private float rating;
 
-	public Pelicula() {
-		id = 0;
-		ano = 0;
-		titulo = null;
-		rating = 0;
-		cRating = 0;
-	}
-
-	public Pelicula(int id, int ano, String titulo, int rating, int cRating) {
+	/**
+	 * @param id
+	 *            - el id de la pelicula
+	 * @param ano
+	 *            - el año de la pelicula
+	 * @param titulo
+	 *            - el titulo de la pelicula
+	 * @param fechaPrimeraValoracion
+	 *            - primera valoracion
+	 * @param fechaUltimaValoracion
+	 * @param rating
+	 */
+	public Pelicula(int id, int ano, String titulo, String fechaPrimeraValoracion, String fechaUltimaValoracion,
+			float rating) {
 		this.id = id;
 		this.ano = ano;
 		this.titulo = titulo;
+		this.fechaPrimeraValoracion = fechaPrimeraValoracion;
+		this.fechaUltimaValoracion = fechaUltimaValoracion;
 		this.rating = rating;
-		this.cRating = cRating;
+	}
+
+	public Pelicula(int id){
+		this.id = id;
+	}
+
+	public Pelicula(int idPelicula, int ano, String titulo) {
+		this.id = idPelicula;
+		this.ano = ano;
+		this.titulo = titulo;
 	}
 
 	public int getId() {
@@ -39,17 +56,31 @@ public class Pelicula {
 		return titulo;
 	}
 
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
 
-	public int getcRating() {
-		return cRating;
+	@Override
+	public int compareTo(Pelicula arg0) {
+		return this.id - arg0.id;
+	}
+	public void agregarDatosResumidos(float ratingPromedio, String primera, String ultima) {
+		this.rating = ratingPromedio;
+		this.fechaPrimeraValoracion = primera;
+		this.fechaUltimaValoracion = ultima;
+	}
+	@Override
+	public String toString() {
+		return id + "|"+rating+"|"+fechaPrimeraValoracion+"|"+fechaUltimaValoracion+"|"+ano+"|"+titulo;
 	}
 
-	public void addRating(int voto) {
-		this.rating = (voto + this.rating) / 2;
-		this.cRating++;
+	public String paraGuardar(){
+		return "{\"id\":\""+id
+				+"\",\"calificacion\":"+rating
+				+"\",\"primeraValoracion\":\""+fechaPrimeraValoracion
+				+"\",\"ultimaValoracion\":\""+fechaUltimaValoracion
+				+"\",\"titulo\":\""+titulo
+				+"\",\"ano\":\""+ano
+				+"\"}";
 	}
-
 }

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -18,7 +19,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import proyectox.model.Calificacion;
 import proyectox.model.Pelicula;
-import proyectox.model.Resumen;
+import proyectox.model.Pelicula;
 import proyectox.view.GUI;
 
 /**
@@ -27,9 +28,10 @@ import proyectox.view.GUI;
  */
 public class ProyectoX {
 
-	public LinkedList<Pelicula> top10Categoria(LinkedList<Pelicula> P, String Categoria) {
+	public LinkedList<Pelicula> top10Categoria(LinkedList<Pelicula> r) {
+
 		LinkedList<Pelicula> C = new LinkedList<>();
-		Iterator iter = P.iterator();
+		Iterator iter = r.iterator();
 		while (iter.hasNext()) {
 			Pelicula T = (Pelicula) iter.next();
 			/*
@@ -38,7 +40,7 @@ public class ProyectoX {
 			Collections.sort(C, new Comparator<Pelicula>() {
 				@Override
 				public int compare(Pelicula p1, Pelicula p2) {
-					return p1.getcRating() - p2.getRating();
+					return Math.round(p1.getRating() - p2.getRating());
 				}
 			});
 		}
@@ -55,8 +57,8 @@ public class ProyectoX {
 		return (C);
 	}
 
-	public LinkedList<LinkedList<Pelicula>> listaPeliculasanio(LinkedList<Pelicula> C) {
-		LinkedList<LinkedList<Pelicula>> L = new LinkedList<>();
+	public LinkedList<Pelicula> listaPeliculasanio(LinkedList<Pelicula> C) {
+		LinkedList<Pelicula> L = new LinkedList<>();
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
@@ -91,7 +93,7 @@ public class ProyectoX {
 		return C;
 	}
 
-	public static LinkedList<Resumen> cargar(boolean b) {
+	public static LinkedList<Pelicula> cargar(boolean b) {
 		if (b)
 			return resumir();
 		long tiempoInicio = System.currentTimeMillis();
@@ -99,8 +101,8 @@ public class ProyectoX {
 		BufferedReader br;
 		String linea;
 		String datos[];
-		Resumen r;
-		LinkedList<Resumen> lista = new LinkedList<>();
+		Pelicula r;
+		LinkedList<Pelicula> lista = new LinkedList<>();
 		try {
 			fr = new FileReader(GUI.nombreResumen);
 			br = new BufferedReader(fr);
@@ -111,7 +113,9 @@ public class ProyectoX {
 				float promedio = Float.parseFloat(datos[1]);
 				String primera = datos[2];
 				String ultima = datos[3];
-				r = new Resumen(idPelicula, promedio, primera, ultima);
+				int ano = Integer.parseInt(datos[4]);
+				String titulo = datos[5];
+				r = new Pelicula(idPelicula,ano,titulo,primera,ultima,promedio);
 				lista.add(r);
 				System.out.println("Resumen cargado en " + (tiempoInicio - System.currentTimeMillis()));
 			}
@@ -122,13 +126,14 @@ public class ProyectoX {
 		} catch (IOException ex) {
 			System.out.println("Error de lectura de archivo!!");
 		}
-		System.out.println("Resumen generado en " + (tiempoInicio - System.currentTimeMillis()));
+		System.out.println("Resumen cargado en " + (tiempoInicio - System.currentTimeMillis()));
 		return lista;
 	}
 
 	@SuppressWarnings("finally")
-	public static LinkedList<Resumen> resumir() {
-		LinkedList<Resumen> res = new LinkedList<>();
+	public static LinkedList<Pelicula> resumir() {
+		LinkedList<Pelicula> res = cargarTitulos();
+		ArrayList<Pelicula> pelis = new ArrayList<>(res.size());
 		File folder = new File("data/download/training_set/");
 		File[] listOfFiles = folder.listFiles();
 		FileWriter fileWriter;
@@ -141,19 +146,15 @@ public class ProyectoX {
 				long startTime = System.currentTimeMillis();
 				File file = listOfFiles[i];
 				if (file.isFile() && file.getName().endsWith(".txt")) {
-					Resumen r = resumirArchivo(file);
-					res.add(r);
+					Pelicula r = resumirArchivo(file,res);
+					pelis.add(r);
 					bufferedWriter.write(r.toString());
 					bufferedWriter.newLine();
 				}
-				System.out.println("Pelicula #" + file.getName().replaceAll("\\D+", "") + ", tiempo de resumen: "
-						+ (System.currentTimeMillis() - startTime) + "ms");
 			}
-			JOptionPane.showMessageDialog(null,"Resumen generado exitosamente en " + (System.currentTimeMillis()- tiempoInicio));
-
+			JOptionPane.showMessageDialog(null,"Pelicula generado exitosamente en " + (System.currentTimeMillis()- tiempoInicio));
 			bufferedWriter.close();
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		} finally {
 			return res;
@@ -161,7 +162,44 @@ public class ProyectoX {
 
 	}
 
-	public static Resumen resumirArchivo(File arch) {
+	private static LinkedList<Pelicula> cargarTitulos() {
+		FileReader fr;
+		BufferedReader br;
+		String linea;
+		String datos[];
+		Pelicula r;
+		LinkedList<Pelicula> lista = new LinkedList<>();
+		Long inicial = System.currentTimeMillis();
+		try {
+			fr = new FileReader(GUI.MOVIES_TITLES);
+			br = new BufferedReader(fr);
+
+			while ((linea = br.readLine()) != null) {
+				datos = linea.split(",");
+				int idPelicula = Integer.parseInt(datos[0]);
+				int ano = datos[1] == "NULL" ? Integer.parseInt(datos[1]) : -1;
+				String titulo = datos[2];
+				r = new Pelicula(idPelicula,ano,titulo);
+				lista.add(r);
+			}
+			System.out.println("Titulos cargados en: "+(System.currentTimeMillis() - inicial)/100 + "s \t Total: "+lista.size() );
+
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Archivo con mal formato");
+		} catch (FileNotFoundException ex) {
+			System.out.println("El archivo no existe");
+		} catch (IOException ex) {
+			System.out.println("Error de lectura de archivo!!");
+		}
+		return lista;
+	}
+
+	/**
+	 *
+	 * @param arch
+	 * @return
+	 */
+	public static Pelicula resumirArchivo(File arch, LinkedList<Pelicula>  peliculas) {
 		FileReader fr;
 		BufferedReader br;
 		String linea;
@@ -170,12 +208,14 @@ public class ProyectoX {
 		int idPelicula;
 		String primera = "", ultima = "";
 		int c = 0; // contador de lineas
-
+		Pelicula fi;
+		Long inicial = System.currentTimeMillis();
 		try {
 			fr = new FileReader(arch);
 			br = new BufferedReader(fr);
 			idPelicula = Integer.parseInt(br.readLine().replaceAll("\\D+", ""));
-
+			int pos = Collections.binarySearch(peliculas, new Pelicula(idPelicula));
+			fi = peliculas.remove(pos);
 			while ((linea = br.readLine()) != null) {
 				datos = linea.split(",");
 				promedio += Integer.parseInt(datos[1]);
@@ -185,10 +225,10 @@ public class ProyectoX {
 					ultima = datos[2];
 				c++;
 			}
-
 			promedio = promedio / c;
-			Resumen r = new Resumen(idPelicula, promedio, primera, ultima);
-			return r;
+			fi.agregarDatosResumidos(promedio, primera, ultima);
+			br.close();
+			return fi;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Archivo con mal formato");
 		} catch (FileNotFoundException ex) {
@@ -199,4 +239,26 @@ public class ProyectoX {
 		return null;
 	}
 
+	public static LinkedList<Pelicula> consolidarPelicula(LinkedList<Pelicula> resumen){
+		for(Pelicula r : resumen){
+
+		}
+		return resumen;
+	}
+
+	public static void genTop10(LinkedList<Pelicula> r){
+		String escrito;
+
+	}
+
+	public static void genListA(LinkedList<Pelicula> r){
+
+	}
+	public static LinkedList<Pelicula> buscarPelicula(LinkedList<Pelicula> resumenes,String palabra){
+		LinkedList<Pelicula> coincidencias = new LinkedList<>();
+		for(Pelicula r:resumenes)
+			if(r.getTitulo().contains(palabra))
+				coincidencias.add(r);
+		return coincidencias;
+	}
 }

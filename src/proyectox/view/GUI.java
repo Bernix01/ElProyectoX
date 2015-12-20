@@ -22,6 +22,7 @@ import proyectox.model.Resumen;
  */
 public class GUI extends javax.swing.JFrame {
 
+	public static final String MOVIES_TITLES = "data/download/movie_titles.txt";
 	public static String nombreResumen = "resumen.x";
 
 	/**

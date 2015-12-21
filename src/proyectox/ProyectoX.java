@@ -33,27 +33,40 @@ public class ProyectoX {
 		Iterator iter = r.iterator();
 		while (iter.hasNext()) {
 			Pelicula T = (Pelicula) iter.next();
-			/*
-			 * if (T.categoria == this.Categoria) C.add(T); }
-			 */
-			Collections.sort(C, new Comparator<Pelicula>() {
-				@Override
-				public int compare(Pelicula p1, Pelicula p2) {
-					return Math.round(p1.getRating() - p2.getRating());
+			if (T.categoria == this.Categoria){
+				C.add(T); 
+			}
+		}
+		Collections.sort(C, new Comparator<Pelicula>() {
+			@Override
+			public int compare(Pelicula p1, Pelicula p2) {
+				return Math.round(p2.getRating() - p1.getRating());
 				}
 			});
+		for i in range (10){
+			Top10.add(C[i])
 		}
-		return (C);
-	}
+		return (Top10);
+		
+		}
 
-	public static ArrayList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C) {
-		Collections.sort(C, new Comparator<Pelicula>() {
+	public static ArrayList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C , ano) {
+		/*Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
 				return p1.getAno() - p2.getAno();
 			}
+		*/
+		LinkedList<Pelicula> ListaPorAnio = new LinkedList<>();
+		Iterator iter = C.iterator();
+		while (iter.hasNext()) {
+			Pelicula T = (Pelicula) iter.next();
+			if (T.getAno == this.ano{
+				ListaPorAnio.add(T); 
+			}
+		}
 		});
-		return C;
+		return ListaPorAnio;
 
 	}
 
@@ -61,7 +74,7 @@ public class ProyectoX {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
-				return p2.getId() - p1.getId();
+				return Math.round(p2.getRating() - p1.getRating());
 			}
 		});
 		return (C);

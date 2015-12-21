@@ -1,5 +1,7 @@
 package proyectox.model;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 /**
  *
  * @CarlosCedeniio
@@ -79,8 +81,8 @@ public class Pelicula implements Comparable<Pelicula> {
 				+"\",\"calificacion\":\""+rating
 				+"\",\"primeraValoracion\":\""+fechaPrimeraValoracion
 				+"\",\"ultimaValoracion\":\""+fechaUltimaValoracion
-				+"\",\"titulo\":\""+titulo
-				+"\",\"ano\":\""+ano
+				+"\",\"titulo\":\""+StringEscapeUtils.escapeJava(titulo)
+				+"\",\"ano\":\""+(ano == -1 ? "-":ano)
 				+"\"}";
 	}
 }

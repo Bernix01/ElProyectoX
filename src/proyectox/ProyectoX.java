@@ -251,11 +251,20 @@ public class ProyectoX {
 	}
 
 	/***
+	 * Guarda la lista de peliculas ordenadas por año.
+	 * @param r
+	 */
+	public static void generarListaXCalificacion(ArrayList<Pelicula> r){
+		guardar(listaPeliculasanio(r),"PeliculasXCalificacion");
+	}
+
+
+	/***
 	 * Genera el archivo .json de la lista de peliculas ordenada por año
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param r - la lista de peliculas
 	 */
-	public static void genListA(ArrayList<Pelicula> r) {
+	public static void generarListaXAno(ArrayList<Pelicula> r) {
 		guardar(listaPeliculasanio(r),"PeliculasXAño");
 
 	}

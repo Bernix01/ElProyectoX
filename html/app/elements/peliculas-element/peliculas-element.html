@@ -11,16 +11,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link href="..\..\bower_components\polymer\polymer.html" rel="import">
 <dom-module id="peliculas-element">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <iron-ajax handle-as="json" id="ajax" last-response="{{peli}}" on-response="handleResponse" url="../../data/peliculas.json"></iron-ajax>
+      <style>
+        :host {
+          display: block;
+        }
+      </style>
+      <iron-ajax auto handle-as="json" id="ajax" last-response="{{peli}}" url="{{url}}"></iron-ajax>
+      [[peli.peliculas.length]]
+      <iron-list as="item" indexAs="id"  items="[[peli.peliculas]]">
+        <template>
 
-    <template is="dom-repeat" items="[[peli.peliculas]]">
-      <paper-card heading="{{item.name}}" elevation="1"><div class="card-content">{{item.name}}</div></paper-card>
-    </template>
+            <div class="card-content">aaaa</div>
+
+        </template>
+      </iron-list>
   </template>
   <script>
     (function() {
@@ -29,18 +33,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'peliculas-element',
 
         properties: {
+          item:{
+          type: Object
+        },
+          url:{
+            type: String,
+            value:"../../data/coincidencias.json",
+            notify:true
+          },
           peli: {
             type: Object,
             value: [
               {
                 name: 'foo'
-              },{
+              }, {
                 name: 'foo'
-              },{
+              }, {
                 name: 'foo'
-              },{
+              }, {
                 name: 'foo'
-              },{
+              }, {
                 name: 'foo'
               }
             ],
@@ -54,10 +66,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
 
         ready: function() {
-          this.$.ajax.generateRequest();
+        //  this.$.ajax.generateRequest();
         },
-        handleResponse: function() {
-        }
       });
     })();
   </script>

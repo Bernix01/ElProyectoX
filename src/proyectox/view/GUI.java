@@ -283,8 +283,6 @@ public class GUI extends javax.swing.JFrame {
 	}
 
 
-
-
 	// Variables declaration - do not modify
 	private javax.swing.JButton BtnGenerarReporte;
 	private javax.swing.JLabel Label1;

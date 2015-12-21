@@ -30,21 +30,26 @@ public class ProyectoX {
 	public LinkedList<Pelicula> top10Categoria(LinkedList<Pelicula> r) {
 
 		LinkedList<Pelicula> C = new LinkedList<>();
+		LinkedList<Pelicula> Top10 = new LinkedList<>();
 		Iterator iter = r.iterator();
 		while (iter.hasNext()) {
 			Pelicula T = (Pelicula) iter.next();
-			/*
-			 * if (T.categoria == this.Categoria) C.add(T); }
-			 */
-			Collections.sort(C, new Comparator<Pelicula>() {
-				@Override
-				public int compare(Pelicula p1, Pelicula p2) {
-					return Math.round(p1.getRating() - p2.getRating());
+			if (T.categoria == this.Categoria){
+				C.add(T); 
+			}
+		}
+		Collections.sort(C, new Comparator<Pelicula>() {
+			@Override
+			public int compare(Pelicula p1, Pelicula p2) {
+				return Math.round(p1.getRating() - p2.getRating());
 				}
 			});
+		for i in range (10){
+			Top10.add(C[i])
 		}
-		return (C);
-	}
+		return (Top10);
+		
+		}
 
 	public static ArrayList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
@@ -79,10 +84,10 @@ public class ProyectoX {
 
 	/***
 	 * Genera el resumen si recibe verdadero, caso contrario, carga el resumen existente.
-	 * Este método no revisa si el resumen existe por lo que debe la verificación debe hacer antes.
+	 * Este mÃ©todo no revisa si el resumen existe por lo que debe la verificaciÃ³n debe hacer antes.
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param b - Define si genera o carga el resumen.
-	 * @return Lista de películas con datos resumidos.
+	 * @return Lista de pelÃ­culas con datos resumidos.
 	 */
 	public static ArrayList<Pelicula> cargar(boolean b) {
 		if (b)
@@ -121,9 +126,9 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Resume los archivos de historial de calificaciones y retorna una lista de películas con los datos procesados.
+	 * Resume los archivos de historial de calificaciones y retorna una lista de pelÃ­culas con los datos procesados.
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
-	 * @return - lista de películas con historial procesado.
+	 * @return - lista de pelÃ­culas con historial procesado.
 	 */
 	public static ArrayList<Pelicula> resumir() {
 		LinkedList<Pelicula> res = cargarTitulos();
@@ -157,7 +162,7 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Carga el archivo movie titles dentro de una lista y los retorna. En caso de error, retornara una lista incompleta o vacía.
+	 * Carga el archivo movie titles dentro de una lista y los retorna. En caso de error, retornara una lista incompleta o vacÃ­a.
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @return Lista de pelicula
 	 */
@@ -195,9 +200,9 @@ public class ProyectoX {
 	}
 
 	/**
-	 * Resume un archivo de historial en una película, la pelicula se debe encontrar dentro de la lista de peliculas que se recibe,
+	 * Resume un archivo de historial en una pelÃ­cula, la pelicula se debe encontrar dentro de la lista de peliculas que se recibe,
 	 * una vez que el historial es resumido, la pelicula es removida de la lista recibida y retornada. Retorna null si el historial
-	 * no tiene su correspondiente película dentro de la lista.
+	 * no tiene su correspondiente pelÃ­cula dentro de la lista.
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param arch - archivo con el historial
 	 * @param peliculas - lista de peliculas
@@ -251,20 +256,20 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Genera el archivo .json de la lista de peliculas ordenada por año
+	 * Genera el archivo .json de la lista de peliculas ordenada por aÃ±o
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param r - la lista de peliculas
 	 */
 	public static void genListA(ArrayList<Pelicula> r) {
-		guardar(listaPeliculasanio(r),"PeliculasXAño");
+		guardar(listaPeliculasanio(r),"PeliculasXAÃ±o");
 
 	}
 
 	/***
-	 * Busca coincidencias de películas dentro de la lista dada y las guarda.
+	 * Busca coincidencias de pelÃ­culas dentro de la lista dada y las guarda.
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
-	 * @param resumenes - lista de peículas
-	 * @param palabra - palabra a buscar dentro de los títulos de resumen
+	 * @param resumenes - lista de peÃ­culas
+	 * @param palabra - palabra a buscar dentro de los tÃ­tulos de resumen
 	 */
 	public static void buscarPelicula(ArrayList<Pelicula> resumenes, String palabra) {
 		LinkedList<Pelicula> coincidencias = new LinkedList<>();
@@ -276,9 +281,9 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Guarda la lista de películas en un archivo de nombre dado, con formato .json
+	 * Guarda la lista de pelÃ­culas en un archivo de nombre dado, con formato .json
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
-	 * @param peliculas - lista de películas a guardar
+	 * @param peliculas - lista de pelÃ­culas a guardar
 	 * @param archivo - nobre del archivo a guardar
 	 */
 	private static void guardar(List<Pelicula> peliculas,String archivo) {

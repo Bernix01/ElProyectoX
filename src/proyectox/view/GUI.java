@@ -1,26 +1,13 @@
 package proyectox.view;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.LinkedList;
-
 import proyectox.ProyectoX;
-import proyectox.model.Calificacion;
-import proyectox.model.Resumen;
 
 /**
  *
  * @author CarlosCedeniio
  */
 public class GUI extends javax.swing.JFrame {
+
 
 	public static final String MOVIES_TITLES = "data/download/movie_titles.txt";
 	public static String nombreResumen = "resumen.x";
@@ -291,7 +278,6 @@ public class GUI extends javax.swing.JFrame {
 				new GUI().setVisible(true);
 			}
 		});
-		ProyectoX.cargar(true);
 
 
 	}

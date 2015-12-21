@@ -51,14 +51,23 @@ public class ProyectoX {
 		
 		}
 
-	public static ArrayList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C) {
-		Collections.sort(C, new Comparator<Pelicula>() {
+	public static ArrayList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C , ano) {
+		/*Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
 				return p1.getAno() - p2.getAno();
 			}
+		*/
+		LinkedList<Pelicula> ListaPorAnio = new LinkedList<>();
+		Iterator iter = C.iterator();
+		while (iter.hasNext()) {
+			Pelicula T = (Pelicula) iter.next();
+			if (T.getAno == this.ano{
+				ListaPorAnio.add(T); 
+			}
+		}
 		});
-		return C;
+		return ListaPorAnio;
 
 	}
 

@@ -41,7 +41,7 @@ public class ProyectoX {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
-				return Math.round(p1.getRating() - p2.getRating());
+				return Math.round(p2.getRating() - p1.getRating());
 				}
 			});
 		for i in range (10){
@@ -75,7 +75,7 @@ public class ProyectoX {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
-				return p2.getId() - p1.getId();
+				return Math.round(p2.getRating() - p1.getRating());
 			}
 		});
 		return (C);

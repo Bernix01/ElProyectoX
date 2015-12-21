@@ -12,13 +12,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import proyectox.model.Calificacion;
-import proyectox.model.Pelicula;
 import proyectox.model.Pelicula;
 import proyectox.view.GUI;
 
@@ -47,29 +46,14 @@ public class ProyectoX {
 		return (C);
 	}
 
-	public LinkedList<Calificacion> calificacionesFecha(LinkedList<Calificacion> C) {
-		Collections.sort(C, new Comparator<Calificacion>() {
-			@Override
-			public int compare(Calificacion c1, Calificacion c2) {
-				return c2.getDate().compareTo(c1.getDate());
-			}
-		});
-		return (C);
-	}
-
-	public LinkedList<Pelicula> listaPeliculasanio(LinkedList<Pelicula> C) {
-		LinkedList<Pelicula> L = new LinkedList<>();
+	public static ArrayList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
 				return p1.getAno() - p2.getAno();
 			}
 		});
-		Iterator iter = C.iterator();
-		while (iter.hasNext()) {
-			// No se como hacer para hacer la lista de listas de aÃ±os :(
-		}
-		return L;
+		return C;
 
 	}
 
@@ -93,7 +77,14 @@ public class ProyectoX {
 		return C;
 	}
 
-	public static LinkedList<Pelicula> cargar(boolean b) {
+	/***
+	 * Genera el resumen si recibe verdadero, caso contrario, carga el resumen existente.
+	 * Este método no revisa si el resumen existe por lo que debe la verificación debe hacer antes.
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @param b - Define si genera o carga el resumen.
+	 * @return Lista de películas con datos resumidos.
+	 */
+	public static ArrayList<Pelicula> cargar(boolean b) {
 		if (b)
 			return resumir();
 		long tiempoInicio = System.currentTimeMillis();
@@ -102,23 +93,23 @@ public class ProyectoX {
 		String linea;
 		String datos[];
 		Pelicula r;
-		LinkedList<Pelicula> lista = new LinkedList<>();
+		ArrayList<Pelicula> lista = new ArrayList<>();
 		try {
 			fr = new FileReader(GUI.nombreResumen);
 			br = new BufferedReader(fr);
 
 			while ((linea = br.readLine()) != null) {
-				datos = linea.split("|");
+				datos = linea.split("\\|");
 				int idPelicula = Integer.parseInt(datos[0]);
 				float promedio = Float.parseFloat(datos[1]);
 				String primera = datos[2];
 				String ultima = datos[3];
 				int ano = Integer.parseInt(datos[4]);
 				String titulo = datos[5];
-				r = new Pelicula(idPelicula,ano,titulo,primera,ultima,promedio);
+				r = new Pelicula(idPelicula, ano, titulo, primera, ultima, promedio);
 				lista.add(r);
-				System.out.println("Resumen cargado en " + (tiempoInicio - System.currentTimeMillis()));
 			}
+			System.out.println("Resumen cargado en " + (System.currentTimeMillis() - tiempoInicio) + "ms");
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Archivo con mal formato");
 		} catch (FileNotFoundException ex) {
@@ -126,14 +117,17 @@ public class ProyectoX {
 		} catch (IOException ex) {
 			System.out.println("Error de lectura de archivo!!");
 		}
-		System.out.println("Resumen cargado en " + (tiempoInicio - System.currentTimeMillis()));
 		return lista;
 	}
 
-	@SuppressWarnings("finally")
-	public static LinkedList<Pelicula> resumir() {
+	/***
+	 * Resume los archivos de historial de calificaciones y retorna una lista de películas con los datos procesados.
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @return - lista de películas con historial procesado.
+	 */
+	public static ArrayList<Pelicula> resumir() {
 		LinkedList<Pelicula> res = cargarTitulos();
-		ArrayList<Pelicula> pelis = new ArrayList<>(res.size());
+		ArrayList<Pelicula> pelis = new ArrayList<>();
 		File folder = new File("data/download/training_set/");
 		File[] listOfFiles = folder.listFiles();
 		FileWriter fileWriter;
@@ -143,25 +137,30 @@ public class ProyectoX {
 			// Always wrap FileWriter in BufferedWriter.
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			for (int i = 0; i < listOfFiles.length; i++) {
-				long startTime = System.currentTimeMillis();
 				File file = listOfFiles[i];
 				if (file.isFile() && file.getName().endsWith(".txt")) {
-					Pelicula r = resumirArchivo(file,res);
+					Pelicula r = resumirArchivo(file, res);
 					pelis.add(r);
 					bufferedWriter.write(r.toString());
 					bufferedWriter.newLine();
 				}
 			}
-			JOptionPane.showMessageDialog(null,"Pelicula generado exitosamente en " + (System.currentTimeMillis()- tiempoInicio));
+			JOptionPane.showMessageDialog(null,
+					"Peliculas cargadas exitosamente en " + (System.currentTimeMillis() - tiempoInicio));
 			bufferedWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			return res;
 		}
+			return pelis;
+
 
 	}
 
+	/***
+	 * Carga el archivo movie titles dentro de una lista y los retorna. En caso de error, retornara una lista incompleta o vacía.
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @return Lista de pelicula
+	 */
 	private static LinkedList<Pelicula> cargarTitulos() {
 		FileReader fr;
 		BufferedReader br;
@@ -177,12 +176,13 @@ public class ProyectoX {
 			while ((linea = br.readLine()) != null) {
 				datos = linea.split(",");
 				int idPelicula = Integer.parseInt(datos[0]);
-				int ano = datos[1] == "NULL" ? Integer.parseInt(datos[1]) : -1;
+				int ano = !datos[1].equals("NULL") ? Integer.parseInt(datos[1]) : -1;
 				String titulo = datos[2];
-				r = new Pelicula(idPelicula,ano,titulo);
+				r = new Pelicula(idPelicula, ano, titulo);
 				lista.add(r);
 			}
-			System.out.println("Titulos cargados en: "+(System.currentTimeMillis() - inicial)/100 + "s \t Total: "+lista.size() );
+			System.out.println("Titulos cargados en: " + (System.currentTimeMillis() - inicial) / 100 + "s \t Total: "
+					+ lista.size());
 
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Archivo con mal formato");
@@ -195,11 +195,15 @@ public class ProyectoX {
 	}
 
 	/**
-	 *
-	 * @param arch
-	 * @return
+	 * Resume un archivo de historial en una película, la pelicula se debe encontrar dentro de la lista de peliculas que se recibe,
+	 * una vez que el historial es resumido, la pelicula es removida de la lista recibida y retornada. Retorna null si el historial
+	 * no tiene su correspondiente película dentro de la lista.
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @param arch - archivo con el historial
+	 * @param peliculas - lista de peliculas
+	 * @return pelicula con historial procesado
 	 */
-	public static Pelicula resumirArchivo(File arch, LinkedList<Pelicula>  peliculas) {
+	public static Pelicula resumirArchivo(File arch, LinkedList<Pelicula> peliculas) {
 		FileReader fr;
 		BufferedReader br;
 		String linea;
@@ -215,6 +219,8 @@ public class ProyectoX {
 			br = new BufferedReader(fr);
 			idPelicula = Integer.parseInt(br.readLine().replaceAll("\\D+", ""));
 			int pos = Collections.binarySearch(peliculas, new Pelicula(idPelicula));
+			if(pos<0)
+				return null;
 			fi = peliculas.remove(pos);
 			while ((linea = br.readLine()) != null) {
 				datos = linea.split(",");
@@ -239,26 +245,63 @@ public class ProyectoX {
 		return null;
 	}
 
-	public static LinkedList<Pelicula> consolidarPelicula(LinkedList<Pelicula> resumen){
-		for(Pelicula r : resumen){
-
-		}
-		return resumen;
-	}
-
-	public static void genTop10(LinkedList<Pelicula> r){
+	public static void genTop10(LinkedList<Pelicula> r) {
 		String escrito;
 
 	}
 
-	public static void genListA(LinkedList<Pelicula> r){
+	/***
+	 * Genera el archivo .json de la lista de peliculas ordenada por año
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @param r - la lista de peliculas
+	 */
+	public static void genListA(ArrayList<Pelicula> r) {
+		guardar(listaPeliculasanio(r),"PeliculasXAño");
 
 	}
-	public static LinkedList<Pelicula> buscarPelicula(LinkedList<Pelicula> resumenes,String palabra){
+
+	/***
+	 * Busca coincidencias de películas dentro de la lista dada y las guarda.
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @param resumenes - lista de peículas
+	 * @param palabra - palabra a buscar dentro de los títulos de resumen
+	 */
+	public static void buscarPelicula(ArrayList<Pelicula> resumenes, String palabra) {
 		LinkedList<Pelicula> coincidencias = new LinkedList<>();
-		for(Pelicula r:resumenes)
-			if(r.getTitulo().contains(palabra))
-				coincidencias.add(r);
-		return coincidencias;
+		for(Pelicula p: resumenes){
+			if(p.getTitulo().contains(palabra))
+				coincidencias.add(p);
+		}
+		guardar(coincidencias,"coincidencias");
+	}
+
+	/***
+	 * Guarda la lista de películas en un archivo de nombre dado, con formato .json
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @param peliculas - lista de películas a guardar
+	 * @param archivo - nobre del archivo a guardar
+	 */
+	private static void guardar(List<Pelicula> peliculas,String archivo) {
+		final String basePath = "html/dist/data/";
+		FileWriter fileWriter;
+		int i = 0;
+		try {
+			fileWriter = new FileWriter(basePath+archivo+".json");
+			// Always wrap FileWriter in BufferedWriter.
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			bufferedWriter.write("{\"peliculas\": [");
+			for(Pelicula p: peliculas){
+				bufferedWriter.write(p.paraGuardar());
+				if(i!=peliculas.size()-1){
+					bufferedWriter.write(",");
+				}
+				i++;
+			}
+			bufferedWriter.write("]}");
+			bufferedWriter.close();
+			JOptionPane.showMessageDialog(null, "Reporte generado con exito.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

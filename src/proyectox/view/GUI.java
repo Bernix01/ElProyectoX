@@ -441,7 +441,7 @@ public class GUI extends javax.swing.JFrame {
               }
           });
 
-          ProyectoX.buscarPelicula(ProyectoX.cargar(false),"Love");
+
 
       }
       // Variables declaration - do not modify

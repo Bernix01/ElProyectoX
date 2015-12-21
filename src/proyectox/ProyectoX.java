@@ -95,7 +95,7 @@ public class ProyectoX {
 		Pelicula r;
 		ArrayList<Pelicula> lista = new ArrayList<>();
 		try {
-			fr = new FileReader(GUI.nombreResumen);
+			fr = new FileReader(GUI.NOMBRERESUMEN);
 			br = new BufferedReader(fr);
 
 			while ((linea = br.readLine()) != null) {
@@ -133,7 +133,7 @@ public class ProyectoX {
 		FileWriter fileWriter;
 		long tiempoInicio = System.currentTimeMillis();
 		try {
-			fileWriter = new FileWriter(GUI.nombreResumen);
+			fileWriter = new FileWriter(GUI.NOMBRERESUMEN);
 			// Always wrap FileWriter in BufferedWriter.
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			for (int i = 0; i < listOfFiles.length; i++) {

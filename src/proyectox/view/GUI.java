@@ -64,7 +64,7 @@ public class GUI extends javax.swing.JFrame {
           noexiste.setMinimumSize(null);
           noexiste.setResizable(false);
 
-          jLabel3.setText("Resumen no encontrado.Al seleccionar 'Ok' se empezará a generar el resumen");
+          jLabel3.setText("Resumen no encontrado.Al seleccionar 'Ok' se empezarÃ¡ a generar el resumen");
 
           BtnOK.setText("Ok");
           BtnOK.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class GUI extends javax.swing.JFrame {
           resumenEncontrado.setResizable(false);
 
           jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-          jLabel2.setText("Se ha encontrado un anterior archivo de resumen, ¿Desea cargar ese o generar uno nuevo?");
+          jLabel2.setText("Se ha encontrado un anterior archivo de resumen, Â¿Desea cargar ese o generar uno nuevo?");
 
           BtnAnteriorResumen.setText("Cargar anterior resumen");
           BtnAnteriorResumen.addActionListener(new java.awt.event.ActionListener() {
@@ -178,9 +178,9 @@ public class GUI extends javax.swing.JFrame {
           Txt1.setToolTipText("");
           Txt1.setVerifyInputWhenFocusTarget(false);
 
-          jLabel1.setText("Seleccione operación a realizar: ");
+          jLabel1.setText("Seleccione operaciÃ³n a realizar: ");
 
-          ListaOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Listar calificaciones de cliente", "Consultar top 10 por categoría", "Listar calificaciones de película", "Listar películas por año","Buscar película","Generar listado de películas por categoría","Mostrar películas" }));
+          ListaOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Listar calificaciones de cliente", "Consultar top 10 por categorÃ­a", "Listar calificaciones de pelÃ­cula", "Listar pelÃ­culas por aÃ±o","Buscar pelÃ­cula","Generar listado de pelÃ­culas por categorÃ­a","Mostrar pelÃ­culas" }));
           ListaOperacion.addActionListener(new java.awt.event.ActionListener() {
               public void actionPerformed(java.awt.event.ActionEvent evt) {
                   ListaOperacionActionPerformed(evt);
@@ -325,36 +325,36 @@ public class GUI extends javax.swing.JFrame {
               Txt1.requestFocus();
 
           }
-          if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categoría")){
+          if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categorÃ­a")){
               Label1.setVisible(true);
-              Label1.setText("Seleccione categoría: ");
+              Label1.setText("Seleccione categorÃ­a: ");
               activarLista();
           }
-          if (ListaOperacion.getSelectedItem().toString().equals("Listar calificaciones de película")){
+          if (ListaOperacion.getSelectedItem().toString().equals("Listar calificaciones de pelÃ­cula")){
               Label1.setVisible(true);
-              Label1.setText("Ingrese nombre de película");
+              Label1.setText("Ingrese nombre de pelÃ­cula");
               activarTxt();
               Txt1.requestFocus();
           }
-          if (ListaOperacion.getSelectedItem().toString().equals("Listar películas por año")){
+          if (ListaOperacion.getSelectedItem().toString().equals("Listar pelÃ­culas por aÃ±o")){
               Label1.setEnabled(true);
-              Label1.setText("Ingrese año: ");
+              Label1.setText("Ingrese aÃ±o: ");
               activarTxt();
 
           }
-          if (ListaOperacion.getSelectedItem().toString().equals("Buscar película")){
+          if (ListaOperacion.getSelectedItem().toString().equals("Buscar pelÃ­cula")){
               Label1.setEnabled(true);
               Label1.setVisible(true);
               Label1.setText("FALTA");
               activarTxt();
               Txt1.requestFocus();
           }
-          if (ListaOperacion.getSelectedItem().toString().equals("Generar listado de películas por categoría")){
+          if (ListaOperacion.getSelectedItem().toString().equals("Generar listado de pelÃ­culas por categorÃ­a")){
               Label1.setVisible(true);
-              Label1.setText("Seleccione categoría: ");
+              Label1.setText("Seleccione categorÃ­a: ");
               activarLista();
           }
-          if (ListaOperacion.getSelectedItem().toString().equals("Mostrar películas")){
+          if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pelÃ­culas")){
               Label1.setVisible(false);
               Txt1.setVisible(false);
               ListaCategoria.setVisible(false);
@@ -389,14 +389,17 @@ public class GUI extends javax.swing.JFrame {
 
       private void BtnAnteriorResumenActionPerformed(java.awt.event.ActionEvent evt) {
           resumenEncontrado.setVisible(false);
-          JOptionPane.showMessageDialog(null,"Se usará el resumen anterior.");
+          JOptionPane.showMessageDialog(null,"Se usarÃ¡ el resumen anterior.");
+          comentarioResumen.setVisible(false);
+          BtnGenerarReporte.setVisible(true);
           ProyectoX.cargar(false);
+          
 
       }
 
       private void BtnNuevoResumenActionPerformed(java.awt.event.ActionEvent evt) {
           resumenEncontrado.setVisible(false);
-          JOptionPane.showMessageDialog(null,"Se creará un nuevo resumen, esta operación puede tardar algun tiempo. Por favor espere.");
+          JOptionPane.showMessageDialog(null,"Se crearÃ¡ un nuevo resumen, esta operaciÃ³n puede tardar algun tiempo. Por favor espere.");
           ProyectoX.cargar(true);
           BtnGenerarReporte.setVisible(true);
           comentarioResumen.setVisible(false);

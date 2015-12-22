@@ -14,20 +14,66 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+        height: 100%;
       }
       iron-list {
         height: 100%;
+        @apply(--layout-vertical);
+      }
+      paper-card {
+        width: 100%;
+        margin-bottom: 16px;
+      }
+      .avatar {
+        display: inline-block;
+        height: 64px;
+        width: 64px;
+        border-radius: 50%;
+        background: var(--paper-pink-500);
+        color: white;
+        line-height: 64px;
+        font-size: 30px;
+        text-align: center;
+      }
+      .fancy .title {
+        position: absolute;
+        top: 30px;
+        left: 100px;
+        color: var(--paper-indigo-500);
+      }
+      .fancy img {
+        width: 100%;
+      }
+      .fancy .big {
+        font-size: 22px;
+        padding: 8px 0 16px;
+        color: var(--google-grey-500);
+      }
+      .fancy .medium {
+        font-size: 16px;
+        padding-bottom: 8px;
       }
     </style>
-      <template is="dom-bind">
-        <iron-ajax auto handle-as="json" id="ajax" last-response="{{peli}}" url="{{url}}"></iron-ajax>
-        [[peli.peliculas.length]]
-        <iron-list as="item" items="[[peli.peliculas]]">
-          <template>
-            <div class="card-content">aaaa</div>
-          </template>
-        </iron-list>
+    <iron-ajax auto handle-as="json" id="ajax" last-response="{{peli}}" url="{{url}}"></iron-ajax>
+    <iron-list as="item" indexAs="titulo" class="fit" items="[[peli.peliculas]]">
+      <template>
+        <paper-card class='fancy'>
+          <div class="card-content">
+            <div class="avatar">{{getLetter(item.titulo)}}</div>
+            <div class="title">
+              <div class="medium">[[item.titulo]]</div>
+              <div class="small">[[item.ano]]</div>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <div class="big">Rating: [[item.calificacion]]</div>
+            <div class="medium">Primera Calificacion: [[item.primeraValoracion]]</div>
+            <div class="small">Ultima Calificacion: [[item.ultimaValoracion]]</div>
+          </div>
+        </paper-card>
       </template>
+    </iron-list>
   </template>
   <script>
     (function() {
@@ -41,24 +87,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           url: {
             type: String,
-            value: '../../data/coincidencias.json',
+            value: '../../data/PeliculasXAnio.json',
             notify: true
           },
           peli: {
             type: Object,
-            value: [
-              {
-                name: 'foo'
-              }, {
-                name: 'foo'
-              }, {
-                name: 'foo'
-              }, {
-                name: 'foo'
-              }, {
-                name: 'foo'
-              }
-            ],
             notify: true
           },
           foo: {
@@ -70,6 +103,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         ready: function() {
           //  this.$.ajax.generateRequest();
+        },
+        getLetter: function(title) {
+          return title.charAt(0);
         }
       });
     })();

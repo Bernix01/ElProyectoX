@@ -85,7 +85,7 @@ public class ProyectoX {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
-				return p1.getAno() - p2.getAno();
+				return p2.getAno() - p1.getAno();
 			}
 		});
 		return C;
@@ -253,7 +253,14 @@ public class ProyectoX {
 			fr = new FileReader(arch);
 			br = new BufferedReader(fr);
 			idPelicula = Integer.parseInt(br.readLine().replaceAll("\\D+", ""));
-			int pos = Collections.binarySearch(peliculas, new Pelicula(idPelicula));
+			int pos = Collections.binarySearch(peliculas, new Pelicula(idPelicula),new Comparator<Pelicula>(){
+
+				@Override
+				public int compare(Pelicula o1, Pelicula o2) {
+					return o1.getId() - o2.getId();
+				}
+
+			});
 			if (pos < 0)
 				return null;
 			fi = peliculas.remove(pos);

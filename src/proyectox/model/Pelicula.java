@@ -1,12 +1,15 @@
 package proyectox.model;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  *
  * @CarlosCedeniio
  */
-public class Pelicula implements Comparable<Pelicula> {
+public class Pelicula {
 	private int id;
 	private int ano;
 	private String titulo;
@@ -62,10 +65,6 @@ public class Pelicula implements Comparable<Pelicula> {
 		return rating;
 	}
 
-	@Override
-	public int compareTo(Pelicula arg0) {
-		return this.id - arg0.id;
-	}
 	public void agregarDatosResumidos(float ratingPromedio, String primera, String ultima) {
 		this.rating = ratingPromedio;
 		this.fechaPrimeraValoracion = primera;
@@ -77,8 +76,11 @@ public class Pelicula implements Comparable<Pelicula> {
 	}
 
 	public String paraGuardar(){
-		return "{\"index\":"+id
-				+",\"calificacion\":\""+rating
+		DecimalFormat df = new DecimalFormat("#.#");
+		df.setRoundingMode(RoundingMode.CEILING);
+		String roundedRating = df.format(rating);
+		return "{\"id\":"+id
+				+",\"calificacion\":\""+roundedRating
 				+"\",\"primeraValoracion\":\""+fechaPrimeraValoracion
 				+"\",\"ultimaValoracion\":\""+fechaUltimaValoracion
 				+"\",\"titulo\":\""+StringEscapeUtils.escapeJava(titulo)

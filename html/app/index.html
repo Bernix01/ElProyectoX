@@ -78,14 +78,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span>Home</span>
           </a>
 
-          <a data-route="users" href="{{baseUrl}}users">
+          <a data-route="poranio" href="{{baseUrl}}poranio">
             <iron-icon icon="info"></iron-icon>
-            <span>Users</span>
+            <span>Por anio</span>
           </a>
 
-          <a data-route="peliculas" href="{{baseUrl}}peliculas">
+          <a data-route="abc" href="{{baseUrl}}abc">
             <iron-icon icon="info"></iron-icon>
-            <span>Peliculas</span>
+            <span>A-Z</span>
+          </a>
+
+          <a data-route="delanio" href="{{baseUrl}}delanio">
+            <iron-icon icon="info"></iron-icon>
+            <span>De un anio</span>
+          </a>
+
+          <a data-route="porrating" href="{{baseUrl}}porrating">
+            <iron-icon icon="info"></iron-icon>
+            <span>Por rating</span>
+          </a>
+
+          <a data-route="top10" href="{{baseUrl}}top10">
+            <iron-icon icon="info"></iron-icon>
+            <span>Top 10</span>
+          </a>
+
+          <a data-route="buscar" href="{{baseUrl}}buscar">
+            <iron-icon icon="info"></iron-icon>
+            <span>Buscar</span>
           </a>
 
           <a data-route="contact" href="{{baseUrl}}contact">
@@ -154,17 +174,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             </section>
 
-            <section data-route="users">
-                <peliculas-element></peliculas-element>
+            <section data-route="top10">
+                <peliculas-top10></peliculas-top10>
             </section>
-            <section data-route="user-info">
+
+            <section data-route="delanio">
+                <peliculas-de-anio></peliculas-de-anio>
+            </section>
+
+            <section data-route="porrating">
+                <peliculas-calificacion></peliculas-calificacion>
+            </section>
+
+            <section data-route="abc">
+                <peliculas-abc></peliculas-abc>
+            </section>
+
+            <section data-route="poranio">
+                <peliculas-anio></peliculas-anio>
+            </section>
+
+            <section data-route="buscar">
+                <peliculas-coincidencia></peliculas-coincidencia>
             </section>
 
 
             <section data-route="contact">
               <paper-material elevation="1">
                 <h2 class="page-title">Contact</h2>
-                <p>This is the contact section</p>
+                <p>By Guillermo Bernal, Carlos Cedenio, Bryan Ordoniez.</p>
               </paper-material>
             </section>
 

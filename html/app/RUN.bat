@@ -1,0 +1,1 @@
+java -cp nanohttpd-webserver-2.1.1-jar-with-dependencies.jar fi.iki.elonen.SimpleWebServer

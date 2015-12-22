@@ -95,7 +95,7 @@ public class ProyectoX {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
-				return p1.getTitulo().compareTo(p1.getTitulo());
+				return p1.getTitulo().compareTo(p2.getTitulo());
 			}
 		});
 		return C;
@@ -156,7 +156,7 @@ public class ProyectoX {
 	 */
 	public static ArrayList<Pelicula> resumir() {
 		LinkedList<Pelicula> res = cargarTitulos();
-		ArrayList<Pelicula> pelis = new ArrayList<>();
+		ArrayList<Pelicula> pelis = new ArrayList<>(res.size());
 		File folder = new File("data/download/training_set/");
 		File[] listOfFiles = folder.listFiles();
 		FileWriter fileWriter;

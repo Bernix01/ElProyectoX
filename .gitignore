@@ -26,4 +26,6 @@ local.properties
 *.launch
 
 # Archivos que analiza el programa
-data/
+data/*
+data/*.*
+data/*

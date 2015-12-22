@@ -1,0 +1,38 @@
+{
+  "peliculas": [{
+    "name": "asdasd",
+    "email": "asdasd",
+    "phone": "13123213",
+    "image": "http://lorempixel.com/400/200/"
+  }, {
+    "name": "asdasd",
+    "email": "asdasd",
+    "phone": "13123213",
+    "image": "http://lorempixel.com/400/200/"
+  }, {
+    "name": "asdasd",
+    "email": "asdasd",
+    "phone": "13123213",
+    "image": "http://lorempixel.com/400/200/"
+  }, {
+    "name": "asdasd",
+    "email": "asdasd",
+    "phone": "13123213",
+    "image": "http://lorempixel.com/400/200/"
+  }, {
+    "name": "asdasd",
+    "email": "asdasd",
+    "phone": "13123213",
+    "image": "http://lorempixel.com/400/200/"
+  }, {
+    "name": "asdasd",
+    "email": "asdasd",
+    "phone": "13123213",
+    "image": "http://lorempixel.com/400/200/"
+  }, {
+    "name": "asdasd",
+    "email": "asdasd",
+    "phone": "13123213",
+    "image": "http://lorempixel.com/400/200/"
+  }]
+}

@@ -26,7 +26,16 @@ import proyectox.view.GUI;
  *
  */
 public class ProyectoX {
-
+	/***
+	 * Por medio de una lista  temporal, el metodo pasa todos los elementos de MovieTittles que tengan la misma categoría
+	 * (5 estrellas, 4 estrellas,...). Luego se la ordena por orden descendente los ratings de temporal y finalmente se pasan
+	 * los 10 primeros elementos de Temporal a la lista Top10.
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r, Categoria
+	 *            - Recibe la lista de peliculas y la categoria a resumir.
+	 * @return Lista de películas Top10 de una Categoria.
+	 */
 	public LinkedList<Pelicula> top10Categoria(ArrayList<Pelicula> r, int Categoria) {
 
 		LinkedList<Pelicula> Temporal = new LinkedList<>();
@@ -34,7 +43,7 @@ public class ProyectoX {
 		Iterator iter = r.iterator();
 		while (iter.hasNext()) {
 			Pelicula T = (Pelicula) iter.next();
-			if (Math.round(T.rating) == this.Categoria){
+			if (Math.round(T.rating) == Categoria){
 				Temporal.add(T);
 			}
 		}
@@ -51,14 +60,16 @@ public class ProyectoX {
 		}
 		return (Top10);
 	}
-
+	/***
+	 * A partir de las lista de peliculas, recoge los elementos que tengan el año que se pide en el parametro y crea una lista de
+	 * los mismos
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r, int año
+	 *            - Recibe la lista de peliculas y el año .
+	 * @return Lista de películas de un año dado
+	 */
 	public static LinkedList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C, int ano) {
-		/*
-		 * Collections.sort(C, new Comparator<Pelicula>() {
-		 *
-		 * @Override public int compare(Pelicula p1, Pelicula p2) { return
-		 * p1.getAno() - p2.getAno(); }
-		 */
 		LinkedList<Pelicula> ListaPorAnio = new LinkedList<>();
 		Iterator iter = C.iterator();
 		while (iter.hasNext()) {
@@ -91,7 +102,15 @@ public class ProyectoX {
 		});
 		return C;
 	}
-
+	/***
+	 * A partir de las lista de peliculas, recoge los elementos que tengan el año que se pide en el parametro y crea una lista de
+	 * los mismos
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r, int año
+	 *            - Recibe la lista de peliculas y el año .
+	 * @return Lista de películas de un año dado
+	 */
 	public static ArrayList<Pelicula> listaOrdenadaAlfabetica(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override

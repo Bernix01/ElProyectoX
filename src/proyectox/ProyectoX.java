@@ -28,7 +28,16 @@ import proyectox.view.GUI;
  *
  */
 public class ProyectoX {
-
+	/***
+	 * Por medio de una lista  temporal, el metodo pasa todos los elementos de MovieTittles que tengan la misma categoría
+	 * (5 estrellas, 4 estrellas,...). Luego se la ordena por orden descendente los ratings de temporal y finalmente se pasan
+	 * los 10 primeros elementos de Temporal a la lista Top10.
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r, Categoria
+	 *            - Recibe la lista de peliculas y la categoria a resumir.
+	 * @return Lista de películas Top10 de una Categoria.
+	 */
 	public static ArrayList<Pelicula> top10Categoria(ArrayList<Pelicula> r, int categoria) {
 
 		LinkedList<Pelicula> Temporal = new LinkedList<>();
@@ -49,14 +58,16 @@ public class ProyectoX {
 		Top10 = listaOrdenadaPorCalificacion(Top10);
 		return (Top10);
 	}
-
+	/***
+	 * A partir de las lista de peliculas, recoge los elementos que tengan el año que se pide en el parametro y crea una lista de
+	 * los mismos
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r, int año
+	 *            - Recibe la lista de peliculas y el año .
+	 * @return Lista de películas de un año dado
+	 */
 	public static LinkedList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C, int ano) {
-		/*
-		 * Collections.sort(C, new Comparator<Pelicula>() {
-		 *
-		 * @Override public int compare(Pelicula p1, Pelicula p2) { return
-		 * p1.getAno() - p2.getAno(); }
-		 */
 		LinkedList<Pelicula> ListaPorAnio = new LinkedList<>();
 		Iterator iter = C.iterator();
 		while (iter.hasNext()) {
@@ -69,7 +80,14 @@ public class ProyectoX {
 		return ListaPorAnio;
 
 	}
-
+	/***
+	 * Ordena la lista de peliculas, por el parametro de Rating de forma descendente. Desde Rating 5 estrellas hasta 1 estrella
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r
+	 *            - Recibe la lista de peliculas.
+	 * @return Lista de películas ordenadas por rating
+	 */
 	public static ArrayList<Pelicula> listaOrdenadaPorCalificacion(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
@@ -85,7 +103,14 @@ public class ProyectoX {
 		});
 		return C;
 	}
-
+	/***
+	 * A partir de las lista de peliculas, se pide que estas se ordenen por año de forma descendente
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r
+	 *            - Recibe la lista de peliculas.
+	 * @return Lista de películas ordenadas por año.
+	 */
 	public static ArrayList<Pelicula> listaPeliculasOrdenAnio(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
@@ -95,7 +120,15 @@ public class ProyectoX {
 		});
 		return C;
 	}
-
+	/***
+	 * A partir de las lista de peliculas, recoge los elementos que tengan el año que se pide en el parametro y crea una lista de
+	 * los mismos
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r, int año
+	 *            - Recibe la lista de peliculas y el año .
+	 * @return Lista de películas de un año dado
+	 */
 	public static ArrayList<Pelicula> listaOrdenadaAlfabetica(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
@@ -160,6 +193,7 @@ public class ProyectoX {
 	 * @return - lista de películas con historial procesado.
 	 */
 	public static ArrayList<Pelicula> resumir() {
+		System.out.println("Generando resumen...");
 		LinkedList<Pelicula> res = cargarTitulos();
 		ArrayList<Pelicula> pelis = new ArrayList<>(res.size());
 		File folder = new File("data/download/training_set/");

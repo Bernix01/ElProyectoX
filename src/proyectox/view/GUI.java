@@ -429,7 +429,21 @@ public class GUI extends javax.swing.JFrame {
          * @author Carlos Cedeño <caencede@espol.edu.ec>
          */
         if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categoría")){
-            JOptionPane.showMessageDialog (null,"Trabajando en ello ;)");
+        	if (ListaCategoria.getSelectedItem().toString().equals("1 estrella")){
+        		ProyectoX.genTop10(peliculas, 1);
+        	}
+        	if (ListaCategoria.getSelectedItem().toString().equals("2 estrellas")){
+        		ProyectoX.genTop10(peliculas, 2);
+        	}
+        	if (ListaCategoria.getSelectedItem().toString().equals("3 estrellas")){
+        		ProyectoX.genTop10(peliculas, 3);
+        	}
+        	if (ListaCategoria.getSelectedItem().toString().equals("4 estrellas")){
+        		ProyectoX.genTop10(peliculas, 4);
+        	}
+        	if (ListaCategoria.getSelectedItem().toString().equals("5 estrellas")){
+        		ProyectoX.genTop10(peliculas, 5);
+        	}
         }
 
         if (ListaOperacion.getSelectedItem().toString().equals("Listar películas por año")){

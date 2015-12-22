@@ -29,30 +29,25 @@ import proyectox.view.GUI;
  */
 public class ProyectoX {
 
-	public LinkedList<Pelicula> top10Categoria(ArrayList<Pelicula> r) {
+	public static ArrayList<Pelicula> top10Categoria(ArrayList<Pelicula> r, int categoria) {
 
-//		LinkedList<Pelicula> Temporal = new LinkedList<>();
-//		LinkedList<Pelicula> Top10
-//		Iterator iter = r.iterator();
-//		while (iter.hasNext()) {
-//			Pelicula T = (Pelicula) iter.next();
-//			if (T.rating == this.){
-//				Temporal.add(T);
-//			}
-//		}
-//		Collections.sort(Temporal, new Comparator<Pelicula>() {
-//			@Override
-//			public int compare(Pelicula p1, Pelicula p2) {
-//				return Math.round(p2.getRating() - p1.getRating());
-//			}
-//		});
-//		Iterator iter2 = Temporal.iterator();
-//		for (int i=1; i<=10 ;i++){
-//			Pelicula T2 = (Pelicula)iter2.next();
-//			Top10.add(T2)
-//		}
-//		return (Top10);
-		return null;
+		LinkedList<Pelicula> Temporal = new LinkedList<>();
+		ArrayList<Pelicula> Top10 = new ArrayList<>(10);
+		Iterator iter = r.iterator();
+		while (iter.hasNext()) {
+			Pelicula T = (Pelicula) iter.next();
+			if (Math.round(T.getRating()) == categoria){
+				Temporal.add(T);
+			}
+		}
+
+		Iterator iter2 = Temporal.iterator();
+		for (int i=1; i<=10 ;i++){
+			Pelicula T2 = (Pelicula)iter2.next();
+			Top10.add(T2);
+		}
+		Top10 = listaOrdenadaPorCalificacion(Top10);
+		return (Top10);
 	}
 
 	public static LinkedList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C, int ano) {
@@ -302,9 +297,8 @@ public class ProyectoX {
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param r - lista de peliculas
 	 */
-	public static void genTop10(ArrayList<Pelicula> r) {
-		String escrito;
-
+	public static void genTop10(ArrayList<Pelicula> r, int cat) {
+		guardar(top10Categoria(r,cat),"PeliculasTop10");
 		try {
 		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/top10").toURI());
 		} catch (Exception e) {e.printStackTrace();}

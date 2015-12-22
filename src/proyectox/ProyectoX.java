@@ -34,7 +34,7 @@ public class ProyectoX {
 		Iterator iter = r.iterator();
 		while (iter.hasNext()) {
 			Pelicula T = (Pelicula) iter.next();
-			if (T.rating == this.){
+			if (Math.round(T.rating) == this.Categoria){
 				Temporal.add(T);
 			}
 		}

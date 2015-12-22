@@ -346,7 +346,7 @@ public class ProyectoX {
 	public static void generarCoincidenciasDePalabra(ArrayList<Pelicula> resumenes, String palabra) {
 		LinkedList<Pelicula> coincidencias = new LinkedList<>();
 		for (Pelicula p : resumenes) {
-			if (p.getTitulo().contains(palabra))
+			if ((p.getTitulo().toLowerCase().trim().replaceAll(" ", "").contains(palabra)))
 				coincidencias.add(p);
 		}
 		guardar(coincidencias, "coincidencias");

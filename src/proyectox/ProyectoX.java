@@ -27,28 +27,27 @@ import proyectox.view.GUI;
  */
 public class ProyectoX {
 
-	public LinkedList<Pelicula> top10Categoria(LinkedList<Pelicula> r) {
+	public LinkedList<Pelicula> top10Categoria(ArrayList<Pelicula> r) {
 
-		// LinkedList<Pelicula> C = new LinkedList<>();
-		// Iterator iter = r.iterator();
-		// while (iter.hasNext()) {
-		// Pelicula T = (Pelicula) iter.next();
-		// if (T.rating == this.){
-		// C.add(T);
-		// }
-		// }
-		// Collections.sort(C, new Comparator<Pelicula>() {
-		// @Override
-		// public int compare(Pelicula p1, Pelicula p2) {
-		// return Math.round(p2.getRating() - p1.getRating());
-		// }
-		// });
-		// for i in range (10){
-		// Top10.add(C[i])
-		// }
-		// return (Top10);
-		//
-		return null;
+		LinkedList<Pelicula> Temporal = new LinkedList<>();
+		LinkedList<Pelicula> Top10
+		Iterator iter = r.iterator();
+		while (iter.hasNext()) {
+			Pelicula T = (Pelicula) iter.next();
+			if (T.rating == this.){
+				Temporal.add(T);
+			}
+		}
+		Collections.sort(Temporal, new Comparator<Pelicula>() {
+			@Override
+			public int compare(Pelicula p1, Pelicula p2) {
+				return Math.round(p2.getRating() - p1.getRating());
+			}
+		});
+		for (int i=1; i<=10 ;i++){
+			Top10.add(Temporal[i])
+		}
+		return (Top10);
 	}
 
 	public static LinkedList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C, int ano) {

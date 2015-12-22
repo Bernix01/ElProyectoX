@@ -77,8 +77,8 @@ public class Pelicula implements Comparable<Pelicula> {
 	}
 
 	public String paraGuardar(){
-		return "{\"id\":\""+id
-				+"\",\"calificacion\":\""+rating
+		return "{\"index\":"+id
+				+",\"calificacion\":\""+rating
 				+"\",\"primeraValoracion\":\""+fechaPrimeraValoracion
 				+"\",\"ultimaValoracion\":\""+fechaUltimaValoracion
 				+"\",\"titulo\":\""+StringEscapeUtils.escapeJava(titulo)

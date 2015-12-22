@@ -11,20 +11,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link href="..\..\bower_components\polymer\polymer.html" rel="import">
 <dom-module id="peliculas-element">
   <template>
-      <style>
-        :host {
-          display: block;
-        }
-      </style>
-      <iron-ajax auto handle-as="json" id="ajax" last-response="{{peli}}" url="{{url}}"></iron-ajax>
-      [[peli.peliculas.length]]
-      <iron-list as="item" indexAs="id"  items="[[peli.peliculas]]">
-        <template>
-
+    <style>
+      :host {
+        display: block;
+      }
+      iron-list {
+        height: 100%;
+      }
+    </style>
+      <template is="dom-bind">
+        <iron-ajax auto handle-as="json" id="ajax" last-response="{{peli}}" url="{{url}}"></iron-ajax>
+        [[peli.peliculas.length]]
+        <iron-list as="item" items="[[peli.peliculas]]">
+          <template>
             <div class="card-content">aaaa</div>
-
-        </template>
-      </iron-list>
+          </template>
+        </iron-list>
+      </template>
   </template>
   <script>
     (function() {
@@ -33,13 +36,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'peliculas-element',
 
         properties: {
-          item:{
-          type: Object
-        },
-          url:{
+          item: {
+            type: Object
+          },
+          url: {
             type: String,
-            value:"../../data/coincidencias.json",
-            notify:true
+            value: '../../data/coincidencias.json',
+            notify: true
           },
           peli: {
             type: Object,
@@ -66,8 +69,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
 
         ready: function() {
-        //  this.$.ajax.generateRequest();
-        },
+          //  this.$.ajax.generateRequest();
+        }
       });
     })();
   </script>

@@ -393,7 +393,7 @@ public class GUI extends javax.swing.JFrame {
           comentarioResumen.setVisible(false);
           BtnGenerarReporte.setVisible(true);
           ProyectoX.cargar(false);
-          
+
 
       }
 
@@ -444,7 +444,7 @@ public class GUI extends javax.swing.JFrame {
               }
           });
 
-
+          ProyectoX.generarCoincidenciasDePalabra(ProyectoX.cargar(false), "Love");
 
       }
       // Variables declaration - do not modify

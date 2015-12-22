@@ -280,9 +280,18 @@ public class ProyectoX {
 		return null;
 	}
 
-	public static void genTop10(LinkedList<Pelicula> r) {
+	/***
+	 * Genera el TOP 10 de cada rating (1-5)
+	 * @author Guillermo Bernal <gbernal096@gmail.com>
+	 * @param r - lista de peliculas
+	 */
+	public static void genTop10(ArrayList<Pelicula> r) {
 		String escrito;
 
+	}
+
+	public static void generarListaDeAnio(ArrayList<Pelicula> r, int anio){
+		guardar(listaPeliculasanio(r, anio),"PeliculasDAnio");
 	}
 
 	/***

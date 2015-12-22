@@ -82,7 +82,14 @@ public class ProyectoX {
 		return ListaPorAnio;
 
 	}
-
+	/***
+	 * Ordena la lista de peliculas, por el parametro de Rating de forma descendente. Desde Rating 5 estrellas hasta 1 estrella
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r
+	 *            - Recibe la lista de peliculas.
+	 * @return Lista de películas ordenadas por rating
+	 */
 	public static ArrayList<Pelicula> listaOrdenadaPorCalificacion(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
@@ -92,7 +99,14 @@ public class ProyectoX {
 		});
 		return C;
 	}
-
+	/***
+	 * A partir de las lista de peliculas, se pide que estas se ordenen por año de forma descendente
+	 *
+	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
+	 * @param ArrayList<Pelicula> r
+	 *            - Recibe la lista de peliculas.
+	 * @return Lista de películas ordenadas por año.
+	 */
 	public static ArrayList<Pelicula> listaPeliculasOrdenAnio(ArrayList<Pelicula> C) {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override

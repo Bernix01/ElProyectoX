@@ -1,5 +1,6 @@
 package proyectox;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,27 +31,28 @@ public class ProyectoX {
 
 	public LinkedList<Pelicula> top10Categoria(ArrayList<Pelicula> r) {
 
-		LinkedList<Pelicula> Temporal = new LinkedList<>();
-		LinkedList<Pelicula> Top10
-		Iterator iter = r.iterator();
-		while (iter.hasNext()) {
-			Pelicula T = (Pelicula) iter.next();
-			if (T.rating == this.){
-				Temporal.add(T);
-			}
-		}
-		Collections.sort(Temporal, new Comparator<Pelicula>() {
-			@Override
-			public int compare(Pelicula p1, Pelicula p2) {
-				return Math.round(p2.getRating() - p1.getRating());
-			}
-		});
-		Iterator iter2 = Temporal.iterator();
-		for (int i=1; i<=10 ;i++){
-			Pelicula T2 = (Pelicula)iter2.next();
-			Top10.add(T2)
-		}
-		return (Top10);
+//		LinkedList<Pelicula> Temporal = new LinkedList<>();
+//		LinkedList<Pelicula> Top10
+//		Iterator iter = r.iterator();
+//		while (iter.hasNext()) {
+//			Pelicula T = (Pelicula) iter.next();
+//			if (T.rating == this.){
+//				Temporal.add(T);
+//			}
+//		}
+//		Collections.sort(Temporal, new Comparator<Pelicula>() {
+//			@Override
+//			public int compare(Pelicula p1, Pelicula p2) {
+//				return Math.round(p2.getRating() - p1.getRating());
+//			}
+//		});
+//		Iterator iter2 = Temporal.iterator();
+//		for (int i=1; i<=10 ;i++){
+//			Pelicula T2 = (Pelicula)iter2.next();
+//			Top10.add(T2)
+//		}
+//		return (Top10);
+		return null;
 	}
 
 	public static LinkedList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C, int ano) {
@@ -76,7 +79,13 @@ public class ProyectoX {
 		Collections.sort(C, new Comparator<Pelicula>() {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
-				return ((int)(p2.getRating() - p1.getRating()));
+				double res = p2.getRating() - p1.getRating();
+				if(res > 0)
+					return 1;
+				if(res == 0)
+					return 0;
+
+					return -1;
 			}
 		});
 		return C;
@@ -296,10 +305,16 @@ public class ProyectoX {
 	public static void genTop10(ArrayList<Pelicula> r) {
 		String escrito;
 
+		try {
+		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/top10").toURI());
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 	public static void generarListaDeAnio(ArrayList<Pelicula> r, int anio){
 		guardar(listaPeliculasanio(r, anio),"PeliculasDAnio");
+		try {
+		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/delanio").toURI());
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 	/***
@@ -310,6 +325,9 @@ public class ProyectoX {
 	 */
 	public static void generarListaXCalificacion(ArrayList<Pelicula> r) {
 		guardar(listaOrdenadaPorCalificacion(r), "PeliculasXCalificacion");
+		try {
+		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/porrating").toURI());
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 	/***
@@ -321,6 +339,9 @@ public class ProyectoX {
 	 */
 	public static void generarListaXAno(ArrayList<Pelicula> r) {
 		guardar(listaPeliculasOrdenAnio(r), "PeliculasXAnio");
+			try {
+			    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/poranio").toURI());
+			} catch (Exception e) {e.printStackTrace();}
 	}
 
 	/***
@@ -332,6 +353,9 @@ public class ProyectoX {
 	 */
 	public static void generarListaABC(ArrayList<Pelicula> r) {
 		guardar(listaOrdenadaAlfabetica(r), "PeliculasABC");
+		try {
+		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/abc").toURI());
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 	/***
@@ -350,6 +374,9 @@ public class ProyectoX {
 				coincidencias.add(p);
 		}
 		guardar(coincidencias, "coincidencias");
+		try {
+		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/buscar").toURI());
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 	/***

@@ -1,6 +1,7 @@
 package proyectox.view;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -20,7 +21,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Crea el Form principal
      */
-    
+
     public GUI() {
         initComponents();
     }
@@ -29,7 +30,7 @@ public class GUI extends javax.swing.JFrame {
      *Codigo generado por el GUI Builder de Netbeans, donde se declaran los componentes
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         noexiste = new javax.swing.JFrame();
@@ -315,13 +316,13 @@ public class GUI extends javax.swing.JFrame {
         comentarioResumen.setVisible(false);
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
-    }                                            
+    }
 
-    private void ListaOperacionActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void ListaOperacionActionPerformed(java.awt.event.ActionEvent evt) {
         /**
          * Establece el ambiente de trabajo al seleccionar una operación.
          * No genera ningun reporte.
@@ -332,7 +333,7 @@ public class GUI extends javax.swing.JFrame {
             Label1.setText("Seleccione categoría: ");
             activarLista();
         }
-        
+
         if (ListaOperacion.getSelectedItem().toString().equals("Listar películas por año")){
             Label1.setEnabled(true);
             Label1.setText("Ingrese año: ");
@@ -358,11 +359,11 @@ public class GUI extends javax.swing.JFrame {
         if (ListaOperacion.getSelectedItem().toString().equals("Mostrar películas ordenadas por categoría" )){
             Label1.setVisible(false);
             Txt1.setVisible(false);
-            ListaCategoria.setVisible(false);     
+            ListaCategoria.setVisible(false);
         }
-    }                                              
+    }
 
-    private void BtnOKActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void BtnOKActionPerformed(java.awt.event.ActionEvent evt) {
         /*
          * Procede a generar el resumen de no ser encontrado un anterior.
          * @author Carlos Cedeño <caencede@espol.edu.ec>
@@ -374,9 +375,9 @@ public class GUI extends javax.swing.JFrame {
         comentarioResumen.setVisible(false);
         BtnGenerarReporte.setVisible(true);
 
-    }                                     
+    }
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
         /*
          * Establece si se generará un nuevo resumen o su usara el anterior encontrado.
          * @author Carlos Cedeño <caencede@espol.edu.ec>
@@ -395,9 +396,9 @@ public class GUI extends javax.swing.JFrame {
             comentarioResumen.setVisible(true);
             noexiste.setVisible(true);
           }
-    }                                 
+    }
 
-    private void BtnAnteriorResumenActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+    private void BtnAnteriorResumenActionPerformed(java.awt.event.ActionEvent evt) {
           /*
            * Acciones a realizar en caso querer usar un resumen antiguo.
            * @author Carlos Cedeño <caencede@espol.edu.ec>
@@ -407,10 +408,10 @@ public class GUI extends javax.swing.JFrame {
           comentarioResumen.setVisible(false);
           BtnGenerarReporte.setVisible(true);
           peliculas= ProyectoX.cargar(false);
-        
-    }                                                  
 
-    private void BtnNuevoResumenActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    }
+
+    private void BtnNuevoResumenActionPerformed(java.awt.event.ActionEvent evt) {
         /*
            * Acciones a realizar en caso querer generar un nuevo resumen.
            * @author Carlos Cedeño <caencede@espol.edu.ec>
@@ -420,9 +421,9 @@ public class GUI extends javax.swing.JFrame {
         peliculas= ProyectoX.cargar(true);
         BtnGenerarReporte.setVisible(true);
         comentarioResumen.setVisible(false);
-    }                                               
+    }
 
-    private void BtnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void BtnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {
         /*
          * Establece los rumbos que toma la aplicacion al momento de generar el resumen.
          * @author Carlos Cedeño <caencede@espol.edu.ec>
@@ -430,7 +431,7 @@ public class GUI extends javax.swing.JFrame {
         if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categoría")){
             JOptionPane.showMessageDialog (null,"Trabajando en ello ;)");
         }
-        
+
         if (ListaOperacion.getSelectedItem().toString().equals("Listar películas por año")){
             try{
             int ano= Integer.parseInt(Txt1.getText().trim());
@@ -465,16 +466,17 @@ public class GUI extends javax.swing.JFrame {
             try{
             ProyectoX.generarListaXCalificacion(peliculas);
             }catch (Exception e){
+            	e.printStackTrace();
                 JOptionPane.showMessageDialog(null,"Oops! algo salió mal!");
             }
         }
-    }                                                 
-    
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -493,19 +495,19 @@ public class GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                new GUI().setVisible(true);   
+
+                new GUI().setVisible(true);
             }
         });
-        
-     
-        
+
+
+
     }
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify
     private javax.swing.JButton BtnAnteriorResumen;
     private javax.swing.JButton BtnGenerarReporte;
     private javax.swing.JButton BtnNuevoResumen;
@@ -536,7 +538,7 @@ public class GUI extends javax.swing.JFrame {
     private static javax.swing.JFrame resumenEncontrado;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
-    // End of variables declaration                   
+    // End of variables declaration
 
 private void activarTxt(){
     Txt1.setVisible(true);

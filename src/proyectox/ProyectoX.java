@@ -27,10 +27,10 @@ import proyectox.view.GUI;
  */
 public class ProyectoX {
 
-	public LinkedList<Pelicula> top10Categoria(ArrayList<Pelicula> r) {
+	public LinkedList<Pelicula> top10Categoria(ArrayList<Pelicula> r, int Categoria) {
 
 		LinkedList<Pelicula> Temporal = new LinkedList<>();
-		LinkedList<Pelicula> Top10
+		LinkedList<Pelicula> Top10 = new LinkedList<>();
 		Iterator iter = r.iterator();
 		while (iter.hasNext()) {
 			Pelicula T = (Pelicula) iter.next();

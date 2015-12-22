@@ -103,13 +103,13 @@ public class ProyectoX {
 
 	/***
 	 * Genera el resumen si recibe verdadero, caso contrario, carga el resumen
-	 * existente. Este método no revisa si el resumen existe por lo que debe la
-	 * verificación debe hacer antes.
+	 * existente. Este mÃ©todo no revisa si el resumen existe por lo que debe la
+	 * verificaciÃ³n debe hacer antes.
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param b
 	 *            - Define si genera o carga el resumen.
-	 * @return Lista de películas con datos resumidos.
+	 * @return Lista de pelÃ­culas con datos resumidos.
 	 */
 	public static ArrayList<Pelicula> cargar(boolean b) {
 		if (b)
@@ -149,10 +149,10 @@ public class ProyectoX {
 
 	/***
 	 * Resume los archivos de historial de calificaciones y retorna una lista de
-	 * películas con los datos procesados.
+	 * pelÃ­culas con los datos procesados.
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
-	 * @return - lista de películas con historial procesado.
+	 * @return - lista de pelÃ­culas con historial procesado.
 	 */
 	public static ArrayList<Pelicula> resumir() {
 		LinkedList<Pelicula> res = cargarTitulos();
@@ -175,7 +175,7 @@ public class ProyectoX {
 				}
 			}
 			JOptionPane.showMessageDialog(null,
-					"Peliculas cargadas exitosamente en " + (System.currentTimeMillis() - tiempoInicio));
+					"Peliculas cargadas exitosamente en " + (System.currentTimeMillis() - tiempoInicio)+" ms");
 			bufferedWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -186,7 +186,7 @@ public class ProyectoX {
 
 	/***
 	 * Carga el archivo movie titles dentro de una lista y los retorna. En caso
-	 * de error, retornara una lista incompleta o vacía.
+	 * de error, retornara una lista incompleta o vacÃ­a.
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @return Lista de pelicula
@@ -225,11 +225,11 @@ public class ProyectoX {
 	}
 
 	/**
-	 * Resume un archivo de historial en una película, la pelicula se debe
+	 * Resume un archivo de historial en una pelÃ­cula, la pelicula se debe
 	 * encontrar dentro de la lista de peliculas que se recibe, una vez que el
 	 * historial es resumido, la pelicula es removida de la lista recibida y
 	 * retornada. Retorna null si el historial no tiene su correspondiente
-	 * película dentro de la lista.
+	 * pelÃ­cula dentro de la lista.
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param arch
@@ -286,7 +286,7 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Guarda la lista de peliculas ordenadas por año.
+	 * Guarda la lista de peliculas ordenadas por aÃ±o.
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param r
@@ -296,7 +296,7 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Genera el archivo .json de la lista de peliculas ordenada por año
+	 * Genera el archivo .json de la lista de peliculas ordenada por aÃ±o
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param r
@@ -318,13 +318,13 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Busca coincidencias de películas dentro de la lista dada y las guarda.
+	 * Busca coincidencias de pelÃ­culas dentro de la lista dada y las guarda.
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param resumenes
-	 *            - lista de peículas
+	 *            - lista de peÃ­culas
 	 * @param palabra
-	 *            - palabra a buscar dentro de los títulos de resumen
+	 *            - palabra a buscar dentro de los tÃ­tulos de resumen
 	 */
 	public static void generarCoincidenciasDePalabra(ArrayList<Pelicula> resumenes, String palabra) {
 		LinkedList<Pelicula> coincidencias = new LinkedList<>();
@@ -336,12 +336,12 @@ public class ProyectoX {
 	}
 
 	/***
-	 * Guarda la lista de películas en un archivo de nombre dado, con formato
+	 * Guarda la lista de pelÃ­culas en un archivo de nombre dado, con formato
 	 * .json
 	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
 	 * @param peliculas
-	 *            - lista de películas a guardar
+	 *            - lista de pelÃ­culas a guardar
 	 * @param archivo
 	 *            - nobre del archivo a guardar
 	 */

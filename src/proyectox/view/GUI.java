@@ -12,7 +12,7 @@ import proyectox.model.Pelicula;
 
 /**
  *
- * @author Carlos Cede√±o <caencede@espol.edu.ec>
+ * @author Carlos CedeÒo <caencede@espol.edu.ec>
  */
 public class GUI extends javax.swing.JFrame {
     public static final String MOVIES_TITLES = "data/download/movie_titles.txt";
@@ -69,7 +69,7 @@ public class GUI extends javax.swing.JFrame {
         noexiste.setMinimumSize(null);
         noexiste.setResizable(false);
 
-        jLabel3.setText("Resumen no encontrado.Al seleccionar 'Ok' se empezar√° a generar el resumen");
+        jLabel3.setText("Resumen no encontrado.Al seleccionar 'Ok' se empezar· a generar el resumen");
 
         BtnOK.setText("Ok");
         BtnOK.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +115,7 @@ public class GUI extends javax.swing.JFrame {
         resumenEncontrado.setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Se ha encontrado un anterior archivo de resumen, ¬øDesea cargar ese o generar uno nuevo?");
+        jLabel2.setText("Se ha encontrado un anterior archivo de resumen, øDesea cargar ese o generar uno nuevo?");
 
         BtnAnteriorResumen.setText("Cargar anterior resumen");
         BtnAnteriorResumen.addActionListener(new java.awt.event.ActionListener() {
@@ -183,9 +183,9 @@ public class GUI extends javax.swing.JFrame {
         Txt1.setToolTipText("");
         Txt1.setVerifyInputWhenFocusTarget(false);
 
-        jLabel1.setText("Seleccione operaci√≥n a realizar: ");
+        jLabel1.setText("Seleccione operaciÛn a realizar: ");
 
-        ListaOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Consultar top 10 por categor√≠a", "Listar pel√≠culas por a√±o","Buscar pel√≠cula","Mostrar pel√≠culas por orden alfab√©tico descendente","Mostrar pel√≠culas por a√±o descendente","Mostrar pel√≠culas ordenadas por categor√≠a" }));
+        ListaOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Consultar top 10 por categorÌa", "Listar pelÌculas por aÒo","Buscar pelÌcula","Mostrar pelÌculas por orden alfabÈtico descendente","Mostrar pelÌculas por aÒo descendente","Mostrar pelÌculas ordenadas por categorÌa" }));
         ListaOperacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ListaOperacionActionPerformed(evt);
@@ -324,39 +324,39 @@ public class GUI extends javax.swing.JFrame {
 
     private void ListaOperacionActionPerformed(java.awt.event.ActionEvent evt) {
         /**
-         * Establece el ambiente de trabajo al seleccionar una operaci√≥n.
+         * Establece el ambiente de trabajo al seleccionar una operaciÛn.
          * No genera ningun reporte.
-         * @author Carlos Cede√±o <caencede@espol.edu.ec>
+         * @author Carlos CedeÒo <caencede@espol.edu.ec>
          */
-        if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categor√≠a")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categorÌa")){
             Label1.setVisible(true);
-            Label1.setText("Seleccione categor√≠a: ");
+            Label1.setText("Seleccione categorÌa: ");
             activarLista();
         }
 
-        if (ListaOperacion.getSelectedItem().toString().equals("Listar pel√≠culas por a√±o")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Listar pelÌculas por aÒo")){
             Label1.setEnabled(true);
-            Label1.setText("Ingrese a√±o: ");
+            Label1.setText("Ingrese aÒo: ");
             activarTxt();
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Buscar pel√≠cula")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Buscar pelÌcula")){
             Label1.setEnabled(true);
             Label1.setVisible(true);
             Label1.setText("Ingrese palabras a comparar");
             activarTxt();
             Txt1.requestFocus();
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pel√≠culas por orden alfab√©tico descendente")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pelÌculas por orden alfabÈtico descendente")){
             Label1.setVisible(false);
             Txt1.setVisible(false);
             ListaCategoria.setVisible(false);
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pel√≠culas por a√±o descendente" )){
+        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pelÌculas por aÒo descendente" )){
             Label1.setVisible(false);
             Txt1.setVisible(false);
             ListaCategoria.setVisible(false);
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pel√≠culas ordenadas por categor√≠a" )){
+        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pelÌculas ordenadas por categorÌa" )){
             Label1.setVisible(false);
             Txt1.setVisible(false);
             ListaCategoria.setVisible(false);
@@ -366,7 +366,7 @@ public class GUI extends javax.swing.JFrame {
     private void BtnOKActionPerformed(java.awt.event.ActionEvent evt) {
         /*
          * Procede a generar el resumen de no ser encontrado un anterior.
-         * @author Carlos Cede√±o <caencede@espol.edu.ec>
+         * @author Carlos CedeÒo <caencede@espol.edu.ec>
          */
         noexiste.setVisible(false);
         JOptionPane.showMessageDialog(null,"Espere a que se haya terminado la carga");
@@ -379,11 +379,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {
         /*
-         * Establece si se generar√° un nuevo resumen o su usara el anterior encontrado.
-         * @author Carlos Cede√±o <caencede@espol.edu.ec>
+         * Establece si se generar· un nuevo resumen o su usara el anterior encontrado.
+         * @author Carlos CedeÒo <caencede@espol.edu.ec>
          */
         String sFichero = "resumen.x";
-        ListaOperacion.setSelectedItem("Consultar top 10 por categor√≠a");
+        ListaOperacion.setSelectedItem("Consultar top 10 por categorÌa");
         File fichero = new File(sFichero);
         if (fichero.exists()){
             System.out.println("existe");
@@ -401,10 +401,10 @@ public class GUI extends javax.swing.JFrame {
     private void BtnAnteriorResumenActionPerformed(java.awt.event.ActionEvent evt) {
           /*
            * Acciones a realizar en caso querer usar un resumen antiguo.
-           * @author Carlos Cede√±o <caencede@espol.edu.ec>
+           * @author Carlos CedeÒo <caencede@espol.edu.ec>
            */
           resumenEncontrado.setVisible(false);
-          JOptionPane.showMessageDialog(null,"Se usar√° el resumen anterior.");
+          JOptionPane.showMessageDialog(null,"Se usar· el resumen anterior.");
           comentarioResumen.setVisible(false);
           BtnGenerarReporte.setVisible(true);
           peliculas= ProyectoX.cargar(false);
@@ -414,10 +414,10 @@ public class GUI extends javax.swing.JFrame {
     private void BtnNuevoResumenActionPerformed(java.awt.event.ActionEvent evt) {
         /*
            * Acciones a realizar en caso querer generar un nuevo resumen.
-           * @author Carlos Cede√±o <caencede@espol.edu.ec>
+           * @author Carlos CedeÒo <caencede@espol.edu.ec>
            */
         resumenEncontrado.setVisible(false);
-        JOptionPane.showMessageDialog(null,"Se crear√° un nuevo resumen, esta operaci√≥n puede tardar algun tiempo. Por favor espere.");
+        JOptionPane.showMessageDialog(null,"Se crear· un nuevo resumen, esta operaciÛn puede tardar algun tiempo. Por favor espere.");
         peliculas= ProyectoX.cargar(true);
         BtnGenerarReporte.setVisible(true);
         comentarioResumen.setVisible(false);
@@ -426,9 +426,9 @@ public class GUI extends javax.swing.JFrame {
     private void BtnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {
         /*
          * Establece los rumbos que toma la aplicacion al momento de generar el resumen.
-         * @author Carlos Cede√±o <caencede@espol.edu.ec>
+         * @author Carlos CedeÒo <caencede@espol.edu.ec>
          */
-        if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categor√≠a")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Consultar top 10 por categorÌa")){
         	if (ListaCategoria.getSelectedItem().toString().equals("1 estrella")){
         		ProyectoX.genTop10(peliculas, 1);
         	}
@@ -446,42 +446,42 @@ public class GUI extends javax.swing.JFrame {
         	}
         }
 
-        if (ListaOperacion.getSelectedItem().toString().equals("Listar pel√≠culas por a√±o")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Listar pelÌculas por aÒo")){
             try{
             int ano= Integer.parseInt(Txt1.getText().trim());
             ProyectoX.generarListaDeAnio(peliculas,ano );
             }catch (Exception e){
-                JOptionPane.showMessageDialog(null,"Datos ingresados inv√°lidos");
+                JOptionPane.showMessageDialog(null,"Datos ingresados inv·lidos");
             }
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Buscar pel√≠cula")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Buscar pelÌcula")){
             try{
             String frase = Txt1.getText().toLowerCase().trim().replaceAll(" ", "");
             ProyectoX.generarCoincidenciasDePalabra(peliculas,frase);
             }catch (Exception e){
-                JOptionPane.showMessageDialog(null,"Datos ingresados inv√°lidos");
+                JOptionPane.showMessageDialog(null,"Datos ingresados inv·lidos");
             }
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pel√≠culas por orden alfab√©tico descendente")){
+        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pelÌculas por orden alfabÈtico descendente")){
             try{
             ProyectoX.generarListaABC(peliculas);
             }catch (Exception e){
-                JOptionPane.showMessageDialog(null,"Oops! algo sali√≥ mal!");
+                JOptionPane.showMessageDialog(null,"Oops! algo saliÛ mal!");
             }
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pel√≠culas por a√±o descendente" )){
+        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pelÌculas por aÒo descendente" )){
             try{
             ProyectoX.generarListaXAno(peliculas);
             }catch (Exception e){
-                JOptionPane.showMessageDialog(null,"Oops! algo sali√≥ mal!");
+                JOptionPane.showMessageDialog(null,"Oops! algo saliÛ mal!");
             }
         }
-        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pel√≠culas ordenadas por categor√≠a" )){
+        if (ListaOperacion.getSelectedItem().toString().equals("Mostrar pelÌculas ordenadas por categorÌa" )){
             try{
             ProyectoX.generarListaXCalificacion(peliculas);
             }catch (Exception e){
             	e.printStackTrace();
-                JOptionPane.showMessageDialog(null,"Oops! algo sali√≥ mal!");
+                JOptionPane.showMessageDialog(null,"Oops! algo saliÛ mal!");
             }
         }
     }

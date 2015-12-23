@@ -28,14 +28,18 @@ import proyectox.view.GUI;
  *
  */
 public class ProyectoX {
+
 	/***
-	 * Por medio de una lista  temporal, el metodo pasa todos los elementos de MovieTittles que tengan la misma categoría
-	 * (5 estrellas, 4 estrellas,...). Luego se la ordena por orden descendente los ratings de temporal y finalmente se pasan
-	 * los 10 primeros elementos de Temporal a la lista Top10.
+	 * Por medio de una lista temporal, el metodo pasa todos los elementos de
+	 * MovieTittles que tengan la misma categoría (5 estrellas, 4
+	 * estrellas,...). Luego se la ordena por orden descendente los ratings de
+	 * temporal y finalmente se pasan los 10 primeros elementos de Temporal a la
+	 * lista Top10.
 	 *
 	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
-	 * @param ArrayList<Pelicula> r, Categoria
-	 *            - Recibe la lista de peliculas y la categoria a resumir.
+	 * @param ArrayList<Pelicula>
+	 *            r, Categoria - Recibe la lista de peliculas y la categoria a
+	 *            resumir.
 	 * @return Lista de películas Top10 de una Categoria.
 	 */
 	public static ArrayList<Pelicula> top10Categoria(ArrayList<Pelicula> r, int categoria) {
@@ -45,26 +49,27 @@ public class ProyectoX {
 		Iterator iter = r.iterator();
 		while (iter.hasNext()) {
 			Pelicula T = (Pelicula) iter.next();
-			if (Math.round(T.getRating()) == categoria){
+			if (Math.round(T.getRating()) == categoria) {
 				Temporal.add(T);
 			}
 		}
 
 		Iterator iter2 = Temporal.iterator();
-		for (int i=1; i<=10 ;i++){
-			Pelicula T2 = (Pelicula)iter2.next();
+		for (int i = 1; i <= 10; i++) {
+			Pelicula T2 = (Pelicula) iter2.next();
 			Top10.add(T2);
 		}
 		Top10 = listaOrdenadaPorCalificacion(Top10);
 		return (Top10);
 	}
+
 	/***
-	 * A partir de las lista de peliculas, recoge los elementos que tengan el año que se pide en el parametro y crea una lista de
-	 * los mismos
+	 * A partir de las lista de peliculas, recoge los elementos que tengan el
+	 * año que se pide en el parametro y crea una lista de los mismos
 	 *
 	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
-	 * @param ArrayList<Pelicula> r, int año
-	 *            - Recibe la lista de peliculas y el año .
+	 * @param ArrayList<Pelicula>
+	 *            r, int año - Recibe la lista de peliculas y el año .
 	 * @return Lista de películas de un año dado
 	 */
 	public static LinkedList<Pelicula> listaPeliculasanio(ArrayList<Pelicula> C, int ano) {
@@ -80,12 +85,14 @@ public class ProyectoX {
 		return ListaPorAnio;
 
 	}
+
 	/***
-	 * Ordena la lista de peliculas, por el parametro de Rating de forma descendente. Desde Rating 5 estrellas hasta 1 estrella
+	 * Ordena la lista de peliculas, por el parametro de Rating de forma
+	 * descendente. Desde Rating 5 estrellas hasta 1 estrella
 	 *
 	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
-	 * @param ArrayList<Pelicula> r
-	 *            - Recibe la lista de peliculas.
+	 * @param ArrayList<Pelicula>
+	 *            r - Recibe la lista de peliculas.
 	 * @return Lista de películas ordenadas por rating
 	 */
 	public static ArrayList<Pelicula> listaOrdenadaPorCalificacion(ArrayList<Pelicula> C) {
@@ -93,22 +100,24 @@ public class ProyectoX {
 			@Override
 			public int compare(Pelicula p1, Pelicula p2) {
 				double res = p2.getRating() - p1.getRating();
-				if(res > 0)
+				if (res > 0)
 					return 1;
-				if(res == 0)
+				if (res == 0)
 					return 0;
 
-					return -1;
+				return -1;
 			}
 		});
 		return C;
 	}
+
 	/***
-	 * A partir de las lista de peliculas, se pide que estas se ordenen por año de forma descendente
+	 * A partir de las lista de peliculas, se pide que estas se ordenen por año
+	 * de forma descendente
 	 *
 	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
-	 * @param ArrayList<Pelicula> r
-	 *            - Recibe la lista de peliculas.
+	 * @param ArrayList<Pelicula>
+	 *            r - Recibe la lista de peliculas.
 	 * @return Lista de películas ordenadas por año.
 	 */
 	public static ArrayList<Pelicula> listaPeliculasOrdenAnio(ArrayList<Pelicula> C) {
@@ -120,13 +129,14 @@ public class ProyectoX {
 		});
 		return C;
 	}
+
 	/***
-	 * A partir de las lista de peliculas, recoge los elementos que tengan el año que se pide en el parametro y crea una lista de
-	 * los mismos
+	 * A partir de las lista de peliculas, recoge los elementos que tengan el
+	 * año que se pide en el parametro y crea una lista de los mismos
 	 *
 	 * @author Bryan Ordóñez <bryan12ordoez@hotmail.es>
-	 * @param ArrayList<Pelicula> r, int año
-	 *            - Recibe la lista de peliculas y el año .
+	 * @param ArrayList<Pelicula>
+	 *            r, int año - Recibe la lista de peliculas y el año .
 	 * @return Lista de películas de un año dado
 	 */
 	public static ArrayList<Pelicula> listaOrdenadaAlfabetica(ArrayList<Pelicula> C) {
@@ -214,7 +224,7 @@ public class ProyectoX {
 				}
 			}
 			JOptionPane.showMessageDialog(null,
-					"Peliculas cargadas exitosamente en " + (System.currentTimeMillis() - tiempoInicio)+" ms");
+					"Peliculas cargadas exitosamente en " + (System.currentTimeMillis() - tiempoInicio) + " ms");
 			bufferedWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -292,7 +302,7 @@ public class ProyectoX {
 			fr = new FileReader(arch);
 			br = new BufferedReader(fr);
 			idPelicula = Integer.parseInt(br.readLine().replaceAll("\\D+", ""));
-			int pos = Collections.binarySearch(peliculas, new Pelicula(idPelicula),new Comparator<Pelicula>(){
+			int pos = Collections.binarySearch(peliculas, new Pelicula(idPelicula), new Comparator<Pelicula>() {
 
 				@Override
 				public int compare(Pelicula o1, Pelicula o2) {
@@ -328,21 +338,27 @@ public class ProyectoX {
 
 	/***
 	 * Genera el TOP 10 de cada rating (1-5)
+	 *
 	 * @author Guillermo Bernal <gbernal096@gmail.com>
-	 * @param r - lista de peliculas
+	 * @param r
+	 *            - lista de peliculas
 	 */
 	public static void genTop10(ArrayList<Pelicula> r, int cat) {
-		guardar(top10Categoria(r,cat),"PeliculasTop10");
+		guardar(top10Categoria(r, cat), "PeliculasTop10");
 		try {
-		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/top10").toURI());
-		} catch (Exception e) {e.printStackTrace();}
+			Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/top10").toURI());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public static void generarListaDeAnio(ArrayList<Pelicula> r, int anio){
-		guardar(listaPeliculasanio(r, anio),"PeliculasDAnio");
+	public static void generarListaDeAnio(ArrayList<Pelicula> r, int anio) {
+		guardar(listaPeliculasanio(r, anio), "PeliculasDAnio");
 		try {
-		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/delanio").toURI());
-		} catch (Exception e) {e.printStackTrace();}
+			Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/delanio").toURI());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -354,8 +370,10 @@ public class ProyectoX {
 	public static void generarListaXCalificacion(ArrayList<Pelicula> r) {
 		guardar(listaOrdenadaPorCalificacion(r), "PeliculasXCalificacion");
 		try {
-		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/porrating").toURI());
-		} catch (Exception e) {e.printStackTrace();}
+			Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/porrating").toURI());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -367,9 +385,11 @@ public class ProyectoX {
 	 */
 	public static void generarListaXAno(ArrayList<Pelicula> r) {
 		guardar(listaPeliculasOrdenAnio(r), "PeliculasXAnio");
-			try {
-			    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/poranio").toURI());
-			} catch (Exception e) {e.printStackTrace();}
+		try {
+			Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/poranio").toURI());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -382,8 +402,10 @@ public class ProyectoX {
 	public static void generarListaABC(ArrayList<Pelicula> r) {
 		guardar(listaOrdenadaAlfabetica(r), "PeliculasABC");
 		try {
-		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/abc").toURI());
-		} catch (Exception e) {e.printStackTrace();}
+			Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/abc").toURI());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -403,8 +425,10 @@ public class ProyectoX {
 		}
 		guardar(coincidencias, "coincidencias");
 		try {
-		    Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/buscar").toURI());
-		} catch (Exception e) {e.printStackTrace();}
+			Desktop.getDesktop().browse(new URL("http://localhost:8080/#!/buscar").toURI());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/***
